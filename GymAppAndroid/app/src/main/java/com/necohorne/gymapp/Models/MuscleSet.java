@@ -13,6 +13,7 @@ public class MuscleSet implements Parcelable {
     public MuscleSet() {
     }
 
+    //Constructor and methods needed for Parcelable
     protected MuscleSet(Parcel in) {
         muscleName = in.readString();
         exercises = in.createTypedArrayList(BlockExercise.CREATOR);
@@ -41,6 +42,7 @@ public class MuscleSet implements Parcelable {
         dest.writeTypedList(exercises);
     }
 
+    //Getters and Setters
     public String getMuscleName() {
         return muscleName;
     }
@@ -56,4 +58,6 @@ public class MuscleSet implements Parcelable {
     public void setExercises(ArrayList<BlockExercise> exercises) {
         this.exercises = exercises;
     }
+
+    //Other Class Methods
 }

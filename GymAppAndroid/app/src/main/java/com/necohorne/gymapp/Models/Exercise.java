@@ -1,8 +1,11 @@
 package com.necohorne.gymapp.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class Exercise {
+public class Exercise implements Parcelable {
 
     private String name;
     private String muscleTargeted;
@@ -12,6 +15,40 @@ public class Exercise {
 
     public Exercise() {
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(muscleTargeted);
+        dest.writeString(equipmentType);
+        dest.writeString(exerciseType);
+        dest.writeStringList(instructions);
+    }
+
+    protected Exercise(Parcel in) {
+        name = in.readString();
+        muscleTargeted = in.readString();
+        equipmentType = in.readString();
+        exerciseType = in.readString();
+        instructions = in.createStringArrayList();
+    }
+
+    public static final Creator<Exercise> CREATOR = new Creator<Exercise>() {
+        @Override
+        public Exercise createFromParcel(Parcel in) {
+            return new Exercise(in);
+        }
+
+        @Override
+        public Exercise[] newArray(int size) {
+            return new Exercise[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -51,5 +88,16 @@ public class Exercise {
 
     public void setInstructions(ArrayList<String> instructions) {
         this.instructions = instructions;
+    }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "name='" + name + '\'' +
+                ", muscleTargeted='" + muscleTargeted + '\'' +
+                ", equipmentType='" + equipmentType + '\'' +
+                ", exerciseType='" + exerciseType + '\'' +
+                ", instructions=" + instructions +
+                '}';
     }
 }

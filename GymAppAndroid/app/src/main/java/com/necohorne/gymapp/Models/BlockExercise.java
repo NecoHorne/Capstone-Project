@@ -3,9 +3,10 @@ package com.necohorne.gymapp.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Arrays;
+
 public class BlockExercise implements Parcelable {
 
-    //todo Add custom object to parcelable method
     private Exercise mExercise;
     private int numberSets;
     private String[] repsPerSet;
@@ -13,7 +14,10 @@ public class BlockExercise implements Parcelable {
     public BlockExercise() {
     }
 
+    //Constructor and methods needed for Parcelable
     protected BlockExercise(Parcel in) {
+        //Custom object exercises
+        mExercise = in.readParcelable(mExercise.getClass().getClassLoader());
         numberSets = in.readInt();
         repsPerSet = in.createStringArray();
     }
@@ -30,6 +34,19 @@ public class BlockExercise implements Parcelable {
         }
     };
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(mExercise, flags);
+        dest.writeInt(numberSets);
+        dest.writeStringArray(repsPerSet);
+    }
+
+    //Getters and Setters
     public Exercise getExercise() {
         return mExercise;
     }
@@ -55,13 +72,13 @@ public class BlockExercise implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
+    public String toString() {
+        return "BlockExercise{" +
+                "mExercise=" + mExercise +
+                ", numberSets=" + numberSets +
+                ", repsPerSet=" + Arrays.toString(repsPerSet) +
+                '}';
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(numberSets);
-        dest.writeStringArray(repsPerSet);
-    }
+    //Other Class Methods
 }

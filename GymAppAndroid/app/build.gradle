@@ -27,19 +27,28 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
 
+    //Android Persistence Libraries
+    def lifecycle_version = "1.1.1"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    def room_version = "1.1.1"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+
     //Firebase Dependencies
-    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-database:16.0.5'
-    implementation 'com.google.firebase:firebase-firestore:17.1.3'
-    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-firestore:17.1.5'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    implementation 'com.google.firebase:firebase-auth:16.0.5'
-    implementation 'com.google.firebase:firebase-invites:16.0.5'
-    implementation 'com.google.firebase:firebase-appindexing:16.0.2'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.firebase:firebase-invites:16.0.6'
+    implementation 'com.google.firebase:firebase-appindexing:17.1.0'
 
     //Third party Dependencies
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'de.hdodenhof:circleimageview:2.2.0' //circle image library
+    implementation 'com.squareup.picasso:picasso:2.71828' //Image loading library
+    implementation 'com.google.code.gson:gson:2.8.2' //Google Json library
 
     //Testing Dependencies
     implementation 'com.android.support:design:28.0.0'

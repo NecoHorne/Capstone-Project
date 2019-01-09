@@ -1,4 +1,4 @@
-package com.necohorne.gymapp.Utils.Database;
+package com.necohorne.gymapp.Utils.Data;
 
 import android.content.Context;
 import android.database.Cursor;

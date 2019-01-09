@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.necohorne.gymapp.Utils.Database.ExerciseDatabaseAdapter;
+import com.necohorne.gymapp.Utils.Data.ExerciseDatabaseAdapter;
 import com.necohorne.gymapp.Models.Exercise;
 import com.necohorne.gymapp.R;
 import com.necohorne.gymapp.Utils.Constants;

@@ -41,12 +41,12 @@ public class ExerciseBlockRecyclerAdapter extends RecyclerView.Adapter<ExerciseB
         return mBlockExercise.getNumberSets();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView numberOfSets;
-        public TextView numberOfReps;
+        TextView numberOfSets;
+        TextView numberOfReps;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             numberOfSets = itemView.findViewById(R.id.set_number_tv);
             numberOfReps = itemView.findViewById(R.id.rep_num_tv);

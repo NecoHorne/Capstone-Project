@@ -98,7 +98,6 @@ public class Calculators {
 
     public String getWTHCatagory(int ratio, boolean male) {
 
-        //todo check this method, there are issues
         if(male) {
             if(ratio < 42) {
                 return "underweight";

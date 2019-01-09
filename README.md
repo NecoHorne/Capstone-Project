@@ -22,6 +22,9 @@ This project is broken down into 2 parts, the parser program that creates the in
 ### Parser
 For information on the Parser program read the Parser's individual README.
 
+### Android App
+Code for the Android app is in the `GymAppAndroid` directory.
+
 ### Required Tasks
 1. Successfully complete Stage 1.
 2. Build your app using your Stage 1 document as a guide.

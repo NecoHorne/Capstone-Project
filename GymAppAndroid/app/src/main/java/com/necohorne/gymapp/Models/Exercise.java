@@ -91,13 +91,8 @@ public class Exercise implements Parcelable {
     }
 
     @Override
+    //the to string method will only return the exercise name in order to use it in the spinner.
     public String toString() {
-        return "Exercise{" +
-                "name='" + name + '\'' +
-                ", muscleTargeted='" + muscleTargeted + '\'' +
-                ", equipmentType='" + equipmentType + '\'' +
-                ", exerciseType='" + exerciseType + '\'' +
-                ", instructions=" + instructions +
-                '}';
+        return name ;
     }
 }

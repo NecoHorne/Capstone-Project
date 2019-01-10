@@ -3,12 +3,14 @@ package com.necohorne.gymapp.Utils.Data;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.util.Log;
 
 import com.necohorne.gymapp.Models.Program;
 
 @Database(entities = {Program.class}, version = 1, exportSchema = false)
+@TypeConverters(SetConverter.class)
 public abstract class ProgramDatabase extends RoomDatabase {
 
     private static final String TAG = ProgramDatabase.class.getSimpleName();

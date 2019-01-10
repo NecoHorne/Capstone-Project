@@ -12,24 +12,24 @@ import com.necohorne.gymapp.Models.Program;
 
 import java.util.List;
 
-@Dao
 //data access objects
+@Dao
 public interface ProgramDao {
 
     @Query("SELECT * FROM program ORDER BY primaryKey")
     LiveData<List<Program>> loadAllPrograms();
 
-//    @Query("SELECT * FROM program WHERE id = :searchMovieId")
-//    Program searchMovie(int searchMovieId);
+//    @Query("SELECT * FROM program WHERE id = :''")
+//    Program searchProgram(int searchProgramId);
 
     @Insert
-    void insertProgram(Program movie);
+    void insertProgram(Program program);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateProgram(Program movie);
+    void updateProgram(Program program);
 
     @Delete
-    void deleteProgram(Program movie);
+    void deleteProgram(Program program);
 
 
 }

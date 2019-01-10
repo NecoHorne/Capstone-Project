@@ -1,5 +1,6 @@
 package com.necohorne.gymapp.UI.Activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent addProgram = new Intent(MainActivity.this, AddProgramActivity.class);
+                startActivity(addProgram);
             }
         });
 
@@ -53,19 +54,16 @@ public class MainActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         //DB Testing
-        ExerciseDatabaseAdapter mDbHelper = new ExerciseDatabaseAdapter(getApplicationContext());
-        mDbHelper.createDatabase();
-        mDbHelper.open();
-//        Cursor testdata = mDbHelper.getTestData();
-        Cursor testdata = mDbHelper.getMuscleData(Constants.ABDUCTORS);
-
-        ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
-        exerciseArrayList = ExerciseDatabaseAdapter.getExercisesFromDb(testdata);
-        mDbHelper.close();
+//        ExerciseDatabaseAdapter mDbHelper = new ExerciseDatabaseAdapter(getApplicationContext());
+//        mDbHelper.createDatabase();
+//        mDbHelper.open();
+//        Cursor testdata = mDbHelper.getMuscleData(Constants.ABDUCTORS);
+//
+//        ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
+//        exerciseArrayList = ExerciseDatabaseAdapter.getExercisesFromDb(testdata);
+//        mDbHelper.close();
 
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -79,19 +77,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if(id == R.id.action_settings) {
             return true;
         }
@@ -105,17 +97,25 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if(id == R.id.nav_gallery) {
-
-        } else if(id == R.id.nav_slideshow) {
-
-        } else if(id == R.id.nav_manage) {
-
-        } else if(id == R.id.nav_share) {
-
-        } else if(id == R.id.nav_send) {
+        switch(id){
+            case R.id.nav_camera:
+                //
+                break;
+            case R.id.nav_gallery:
+                //
+                break;
+            case R.id.nav_slideshow:
+                //
+                break;
+            case R.id.nav_manage:
+                //
+                break;
+            case R.id.nav_share:
+                //
+                break;
+            case R.id.nav_send:
+                //
+                break;
 
         }
 

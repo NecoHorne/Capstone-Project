@@ -27,6 +27,36 @@
         <item>@drawable/olympic_lifting</item>
     </array>
 
+    <array name="muscles">
+        <item>Abductors</item>
+        <item>Abdominals</item>
+        <item>Adductors</item>
+        <item>Biceps</item>
+        <item>Calves</item>
+        <item>Chest</item>
+        <item>Forearms</item>
+        <item>Glutes</item>
+        <item>Hamstrings</item>
+        <item>Lats</item>
+        <item>Lower Back</item>
+        <item>Middle Back</item>
+        <item>Neck</item>
+        <item>Quadriceps</item>
+        <item>Shoulders</item>
+        <item>Traps</item>
+        <item>Triceps</item>
+    </array>
+
+    <array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </array>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -36,6 +66,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Title</string>
+    <string name="delete">Delete</string>
+    <string name="subtitle">SubTitle</string>
 
 
 </resources>

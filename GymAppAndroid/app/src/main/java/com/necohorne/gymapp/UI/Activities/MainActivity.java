@@ -1,40 +1,51 @@
 package com.necohorne.gymapp.UI.Activities;
 
 import android.content.Intent;
-import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
-import com.necohorne.gymapp.Utils.Data.ExerciseDatabaseAdapter;
-import com.necohorne.gymapp.Models.Exercise;
+import com.necohorne.gymapp.Models.Program;
 import com.necohorne.gymapp.R;
-import com.necohorne.gymapp.Utils.Constants;
+import com.necohorne.gymapp.Utils.Data.ProgramDatabase;
+import com.necohorne.gymapp.Utils.RecyclerAdaptors.MainRecyclerAdapter;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    private TextView dayOfWeekTextview;
+    private TextView musclesTextview;
+    private RecyclerView mRecyclerView;
+    public MainRecyclerAdapter mAdapter;
+
+    public String mDay;
+    public ProgramDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,31 +54,41 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
-        //DB Testing
-//        ExerciseDatabaseAdapter mDbHelper = new ExerciseDatabaseAdapter(getApplicationContext());
-//        mDbHelper.createDatabase();
-//        mDbHelper.open();
-//        Cursor testdata = mDbHelper.getMuscleData(Constants.ABDUCTORS);
-//
-//        ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
-//        exerciseArrayList = ExerciseDatabaseAdapter.getExercisesFromDb(testdata);
-//        mDbHelper.close();
+        initUI();
+        mDatabase = ProgramDatabase.getInstance(getApplicationContext());
+        new DatabaseOperation().execute();
+
+    }
+
+    private void initUI(){
+        dayOfWeekTextview = findViewById(R.id.day_ofweek_tv);
+        mDay = getDay();
+        dayOfWeekTextview.setText(mDay);
+        initRecycler();
+        musclesTextview = findViewById(R.id.muscle_groups_tv);
+
+    }
+
+    private void initRecycler(){
+        mRecyclerView = findViewById(R.id.recycler_main);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if(drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -119,8 +140,30 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public String getDay(){
+        Date date = new Date();
+        SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE");
+        return simpleDateformat.format(date);
+    }
+
+    public class DatabaseOperation extends AsyncTask<Void, Void, Program>{
+
+        @Override
+        protected Program doInBackground(Void... voids) {
+            return mDatabase.ProgramDao().searchProgramForDay(mDay);
+        }
+
+        @Override
+        protected void onPostExecute(Program program) {
+            if(program != null){
+                mAdapter = new MainRecyclerAdapter(getApplicationContext(), program);
+                mRecyclerView.setAdapter(mAdapter);
+            }
+        }
     }
 }

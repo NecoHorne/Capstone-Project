@@ -87,7 +87,7 @@ public class Program implements Parcelable {
     public String toString() {
         return "Program{" +
                 "primaryKey=" + primaryKey +
-                ", day='" + day + '\'' +
+                ", mDay='" + day + '\'' +
                 ", sets=" + sets +
                 '}';
     }

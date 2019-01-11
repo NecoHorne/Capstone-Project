@@ -37,6 +37,12 @@ public class MuscleSetRecyclerAdapter extends RecyclerView.Adapter<MuscleSetRecy
     public void onBindViewHolder(@NonNull MuscleSetRecyclerAdapter.ViewHolder viewHolder, int i) {
         Exercise exercise = mBlockExercises.get(i).getExercise();
         viewHolder.exerciseName.setText(exercise.getName());
+        viewHolder.exerciseName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo go to exercise detail page.
+            }
+        });
 
         //Nested recyclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);

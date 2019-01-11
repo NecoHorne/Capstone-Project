@@ -138,7 +138,7 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
@@ -303,12 +303,12 @@
       <workItem from="1546520070687" duration="4954000" />
       <workItem from="1546527984964" duration="704000" />
       <workItem from="1547035511601" duration="129000" />
-      <workItem from="1547109903476" duration="278000" />
+      <workItem from="1547109903476" duration="924000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26730000" />
+    <option name="totallyTimeSpent" value="27376000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -320,9 +320,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="762" y="0" width="781" height="830" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27045768" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13087249" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -357,7 +358,7 @@
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.3295302" />
       <window_info anchor="right" id="Gradle" order="9" />
       <window_info anchor="right" id="SciView" order="10" />
-      <window_info anchor="right" id="Database" order="11" visible="true" weight="0.4368932" />
+      <window_info anchor="right" id="Database" order="11" visible="true" weight="0.21140939" />
       <window_info anchor="right" id="Palette&#9;" order="12" />
       <window_info anchor="right" id="Theme Preview" order="13" />
       <window_info anchor="right" id="Maven" order="14" />

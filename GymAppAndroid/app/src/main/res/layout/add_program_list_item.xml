@@ -39,15 +39,17 @@
 
             </LinearLayout>
 
-            <Button
+            <ImageButton
                 android:id="@+id/add_program_delete_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="104dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_rectangle"
-                android:text="@string/delete" />
+                android:contentDescription="@string/delete"
+                app:srcCompat="@drawable/ic_delete_black_24dp" />
+
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

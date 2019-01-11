@@ -71,6 +71,7 @@ public class BlockExercise implements Parcelable {
         this.repsPerSet = repsPerSet;
     }
 
+    //Other Class Methods
     @Override
     public String toString() {
         return "BlockExercise{" +
@@ -79,6 +80,4 @@ public class BlockExercise implements Parcelable {
                 ", repsPerSet=" + Arrays.toString(repsPerSet) +
                 '}';
     }
-
-    //Other Class Methods
 }

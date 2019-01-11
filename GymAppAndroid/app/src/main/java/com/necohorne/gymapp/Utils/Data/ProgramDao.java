@@ -20,7 +20,10 @@ public interface ProgramDao {
     LiveData<List<Program>> loadAllPrograms();
 
 //    @Query("SELECT * FROM program WHERE id = :''")
-//    Program searchProgram(int searchProgramId);
+////    Program searchProgram(int searchProgramId);
+
+    @Query("SELECT * FROM program WHERE day = :searchDay")
+    Program searchProgramForDay(String searchDay);
 
     @Insert
     void insertProgram(Program program);

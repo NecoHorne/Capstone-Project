@@ -8,12 +8,13 @@ import com.necohorne.gymapp.Models.MuscleSet;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SetConverter {
 
     @TypeConverter
     public static ArrayList<MuscleSet> fromString(String value) {
-        Type listType = new TypeToken<MuscleSet>() {}.getType();
+        Type listType = new TypeToken<List<MuscleSet>>() {}.getType();
         return new Gson().fromJson(value, listType);
     }
 

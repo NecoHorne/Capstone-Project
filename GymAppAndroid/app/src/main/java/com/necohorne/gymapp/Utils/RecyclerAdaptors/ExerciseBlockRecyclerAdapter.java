@@ -32,7 +32,7 @@ public class ExerciseBlockRecyclerAdapter extends RecyclerView.Adapter<ExerciseB
     @Override
     public void onBindViewHolder(@NonNull ExerciseBlockRecyclerAdapter.ViewHolder viewHolder, int position) {
         String reps = mBlockExercise.getRepsPerSet()[position];
-        viewHolder.numberOfSets.setText("Set Number" + position);
+        viewHolder.numberOfSets.setText("Set: " + String.valueOf(position + 1));
         viewHolder.numberOfReps.setText("Reps: " + reps);
     }
 

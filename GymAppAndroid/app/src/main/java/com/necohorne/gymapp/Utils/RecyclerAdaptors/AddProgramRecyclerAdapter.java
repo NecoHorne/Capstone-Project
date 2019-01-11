@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.necohorne.gymapp.Models.BlockExercise;
@@ -33,8 +33,19 @@ public class AddProgramRecyclerAdapter extends RecyclerView.Adapter<AddProgramRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        final BlockExercise blockExercise = mBlockExercises.get(i);
+        viewHolder.exerciseTitle.setText(blockExercise.getExercise().getName());
+        viewHolder.exerciseSub.setText("Sets: " + blockExercise.getNumberSets() + " Reps per set: " + blockExercise.getRepsPerSet()[0]);
 
+        viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBlockExercises.remove(blockExercise);
+                notifyDataSetChanged();
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -45,7 +56,7 @@ public class AddProgramRecyclerAdapter extends RecyclerView.Adapter<AddProgramRe
 
         TextView exerciseTitle;
         TextView exerciseSub;
-        Button deleteButton;
+        ImageButton deleteButton;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);

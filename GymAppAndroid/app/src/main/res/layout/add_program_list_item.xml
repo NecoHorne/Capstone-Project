@@ -17,6 +17,7 @@
             android:weightSum="2">
 
             <LinearLayout
+                android:id="@+id/add_exercise_lin_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

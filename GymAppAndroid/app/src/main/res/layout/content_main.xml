@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/BlackLight"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".UI.Activities.MainActivity"
     tools:showIn="@layout/app_bar_main">
@@ -23,6 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="My Program"
+            android:textAlignment="textStart"
+            android:textColor="@color/PAMPAS"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -34,6 +37,7 @@
                 android:id="@+id/imageView5"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_marginStart="5dp"
                 android:padding="8dp"
                 app:srcCompat="@drawable/ic_calendar_color" />
 
@@ -48,6 +52,8 @@
                 android:layout_toEndOf="@+id/imageView5"
                 android:padding="8dp"
                 android:text="Day of Week"
+                android:textAlignment="viewStart"
+                android:textColor="@color/PAMPAS"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -64,6 +70,8 @@
                 android:layout_marginBottom="0dp"
                 android:padding="8dp"
                 android:text="Muscle Groups"
+                android:textAlignment="viewStart"
+                android:textColor="@color/PAMPAS"
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </RelativeLayout>

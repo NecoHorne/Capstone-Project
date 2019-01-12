@@ -1,6 +1,7 @@
 package com.necohorne.gymapp.Utils.RecyclerAdaptors;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.necohorne.gymapp.Models.BlockExercise;
 import com.necohorne.gymapp.Models.Exercise;
 import com.necohorne.gymapp.R;
+import com.necohorne.gymapp.UI.Activities.DetailExerciseActivity;
+import com.necohorne.gymapp.Utils.Constants;
 
 import java.util.ArrayList;
 
@@ -35,12 +38,14 @@ public class MuscleSetRecyclerAdapter extends RecyclerView.Adapter<MuscleSetRecy
 
     @Override
     public void onBindViewHolder(@NonNull MuscleSetRecyclerAdapter.ViewHolder viewHolder, int i) {
-        Exercise exercise = mBlockExercises.get(i).getExercise();
+        final Exercise exercise = mBlockExercises.get(i).getExercise();
         viewHolder.exerciseName.setText(exercise.getName());
         viewHolder.exerciseName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo go to exercise detail page.
+                Intent intent = new Intent(mContext, DetailExerciseActivity.class);
+                intent.putExtra(Constants.INTENT_EXERCISE, exercise);
+                mContext.startActivity(intent);
             }
         });
 

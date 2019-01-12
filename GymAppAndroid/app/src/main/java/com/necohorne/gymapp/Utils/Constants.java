@@ -15,6 +15,9 @@ public class Constants {
     public static final String EXERCISE_TYPE = "exerciseType";
     public static final String EXERCISE_INSTRUCTIONS = "instructions";
 
+    //Intents
+    public static final String INTENT_EXERCISE = "intentExercise";
+
     //Exercise Types
     public static final String STRENGTH = "Strength";
     public static final String STRETCHING = "Stretching";

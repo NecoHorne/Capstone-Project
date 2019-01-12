@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.Activities.LoginActivity"></activity>
+        <activity android:name=".UI.Activities.LoginActivity" />
         <activity android:name=".UI.Activities.RegisterNewAccount" />
         <activity
             android:name=".UI.Activities.MainActivity"
@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.Activities.AddProgramActivity"></activity>
+        <activity android:name=".UI.Activities.AddProgramActivity" />
+        <activity android:name=".UI.Activities.DetailExerciseActivity"></activity>
     </application>
 
 </manifest>

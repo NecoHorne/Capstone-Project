@@ -15,7 +15,7 @@
         android:layout_marginRight="8dp"
         android:padding="5dp"
         android:text="Muscle"
-        android:textColor="@color/BlackLight"
+        android:textColor="@color/PAMPAS"
         android:textSize="18sp"
         android:textStyle="bold" />
 

@@ -3,10 +3,15 @@
     <color name="colorPrimary">#f44336</color>
     <color name="colorPrimaryLight">#ff7961</color>
     <color name="colorPrimaryDark">#ba000d</color>
-    <color name="colorAccent">#4caf50</color>
+    <color name="colorAccent">#00BEC4</color>
 
     <color name="White">#ffffff</color>
     <color name="Black">#000000</color>
     <color name="BlackLight">#292929</color>
     <color name="sushi">#83b126</color>
+
+    <color name="MOJO">#c9454e</color>
+    <color name="SQUIRREL">#8c8274</color>
+    <color name="MARTINI">#ac9d9e</color>
+    <color name="PAMPAS">#f2ecea</color>
 </resources>

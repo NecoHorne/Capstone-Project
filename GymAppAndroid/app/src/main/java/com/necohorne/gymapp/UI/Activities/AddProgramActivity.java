@@ -1,7 +1,6 @@
 package com.necohorne.gymapp.UI.Activities;
 
 import android.database.Cursor;
-import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -44,6 +44,7 @@ public class AddProgramActivity extends AppCompatActivity {
     private Button addExerciseButton;
     private EditText setsEditText;
     private EditText repsEditText;
+    private ProgressBar mProgressBar;
 
     //Data Objects
     private String daySelected;
@@ -54,17 +55,20 @@ public class AddProgramActivity extends AppCompatActivity {
     private Exercise mExercise;
     private AddProgramRecyclerAdapter mAdapter;
     public ProgramDatabase mDatabase;
+    private Program mProgram;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_program);
-        mBlockExerciseArrayList = new ArrayList<>();
         initUi();
+        mBlockExerciseArrayList = new ArrayList<>();
+        mProgram = new Program();
+        mDatabase = ProgramDatabase.getInstance(getApplicationContext());
+        setUpRecycler();
         setDaySpinner();
         setMuscleSpinner();
-        mDatabase = ProgramDatabase.getInstance(getApplicationContext());
     }
 
     //Add Program UI Elements
@@ -86,11 +90,11 @@ public class AddProgramActivity extends AppCompatActivity {
     }
 
     private void initUi() {
+        mProgressBar = findViewById(R.id.add_program_progress);
         daySpinner = findViewById(R.id.day_spinner);
         muscleSpinner = findViewById(R.id.muscle_spinner);
         exerciseSpinner = findViewById(R.id.exercise_spinner);
         mRecyclerView = findViewById(R.id.add_program_recycler);
-        setUpRecycler();
 
         repsEditText = findViewById(R.id.reps_edit_text);
         setsEditText = findViewById(R.id.sets_edit_text);
@@ -120,6 +124,7 @@ public class AddProgramActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 daySelected = daySpinner.getSelectedItem().toString();
+                new CheckDatabase().execute();
             }
 
             @Override
@@ -208,7 +213,7 @@ public class AddProgramActivity extends AppCompatActivity {
                 blockExercise.setRepsPerSet(reps);
                 mBlockExerciseArrayList.add(blockExercise);
                 mAdapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), "Added to program", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Exercise added to program", Toast.LENGTH_LONG).show();
             }else {
                 Toast.makeText(getApplicationContext(), "Sets and reps fields cannot be blank or 0", Toast.LENGTH_LONG).show();
             }
@@ -218,46 +223,72 @@ public class AddProgramActivity extends AppCompatActivity {
     }
 
     private void saveProgram() {
-        //create a new program
-        Program program = new Program();
         //create an empty array list of muscle sets
+        //create an empty array to store the sorted exercises.
+        //sort the muscles into a unique set to make creation of the muscle sets easier.
+        //for each muscle in the unique muscle set check the block exercise list for exercises of that muscle
+        //go through each BlockExercise in the array list
+        //create a new MuscleSet for each unique muscle in the set
+        //if the muscle corresponds to an exercise of that muscle add it to the sorted exercise list
+        //add the sorted exercises to the MuscleSet
+        //add each unique muscle set to the MuscleSet array list
+        //add muscle set array list to the program object
+        //after saving program end the activity and return to main.
         ArrayList<MuscleSet> muscleSets = new ArrayList<>();
 
-        //create an empty array to store the sorted exercises.
-        ArrayList<BlockExercise> sortedExerciseList = new ArrayList<>();
-
-        //sort the muscles into a unique set to make creation of the muscle sets easier.
         List<String> muscleList = new ArrayList<>();
         for(int i = 0; i < mBlockExerciseArrayList.size(); i++) {
             muscleList.add(mBlockExerciseArrayList.get(i).getExercise().getMuscleTargeted());
         }
-        Set<String> uniqueMuscles = new HashSet<>(muscleList);
 
-        //for each muscle in the unique muscle set check the block exercise list for exercises of that muscle
+        Set<String> uniqueMuscles = new HashSet<>(muscleList);
         for(String muscle : uniqueMuscles) {
+            ArrayList<BlockExercise> sortedExerciseList = new ArrayList<>();
             MuscleSet muscleSet = new MuscleSet();
-            //go through each BlockExercise in the array list
+            muscleSet.setMuscleName(muscle);
             for(int i = 0; i < mBlockExerciseArrayList.size(); i++) {
-                //create a new MuscleSet for each unique muscle in the set
-                muscleSet.setMuscleName(muscle);
-                //if the muscle corresponds to an exercise of that muscle add it to the sorted exercise list
                 if(mBlockExerciseArrayList.get(i).getExercise().getMuscleTargeted().equals(muscle)){
                     sortedExerciseList.add(mBlockExerciseArrayList.get(i));
                 }
-                //add the sorted exercises to the MuscleSet
                 muscleSet.setExercises(sortedExerciseList);
             }
-            //add each unique muscle set to the MuscleSet array list
             muscleSets.add(muscleSet);
         }
-        program.setDay(daySelected);
-        //add muscle set array list to the program object
-        program.setSets(muscleSets);
-        Log.d(TAG, "saveProgram: " + program.toString());
-        //todo Save to Db
-        new DataBaseOperation().execute(program);
-        //after saving program end the activity and return to main.
+        mProgram.setDay(daySelected);
+
+        mProgram.setSets(muscleSets);
+        Log.d(TAG, "saveProgram: " + mProgram.toString());
+        new DataBaseOperation().execute(mProgram);
+
         finish();
+    }
+
+    public class CheckDatabase extends AsyncTask<Void, Void, Boolean>{
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            if(mDatabase.ProgramDao().searchProgramForDay(daySelected) != null){
+                mProgram = mDatabase.ProgramDao().searchProgramForDay(daySelected);
+                Log.d(TAG, "doInBackground: " + mProgram.toString());
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean){
+                mBlockExerciseArrayList.clear();
+                ArrayList<MuscleSet> sets = mProgram.getSets();
+                for(int i = 0; i < sets.size(); i++) {
+                    MuscleSet set = sets.get(i);
+                    ArrayList<BlockExercise> exercises = set.getExercises();
+                    mBlockExerciseArrayList.addAll(exercises);
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     public class DataBaseOperation extends AsyncTask<Program, Void, Boolean> {
@@ -268,6 +299,7 @@ public class AddProgramActivity extends AppCompatActivity {
             Program program = programs[0];
 
             if(mDatabase.ProgramDao().searchProgramForDay(program.getDay()) != null){
+                mDatabase.ProgramDao().updateProgram(program);
                 return false;
             } else {
                 mDatabase.ProgramDao().insertProgram(program);
@@ -280,7 +312,7 @@ public class AddProgramActivity extends AppCompatActivity {
             if(bool){
                 Toast.makeText(getApplicationContext(), "Program for " + daySelected + " saved.", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Program for "+ daySelected +" Already Exists!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Program for "+ daySelected +" Updated!", Toast.LENGTH_LONG).show();
             }
         }
     }

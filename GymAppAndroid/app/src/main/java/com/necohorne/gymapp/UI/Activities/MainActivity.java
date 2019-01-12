@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.necohorne.gymapp.Models.Program;
@@ -30,11 +31,15 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    //UI Elements
     private TextView dayOfWeekTextview;
     private TextView musclesTextview;
     private RecyclerView mRecyclerView;
     public MainRecyclerAdapter mAdapter;
+    private ProgressBar mProgressBar;
 
+    //Data Objects
     public String mDay;
     public ProgramDatabase mDatabase;
 
@@ -70,7 +75,14 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new DatabaseOperation().execute();
+    }
+
     private void initUI(){
+        mProgressBar = findViewById(R.id.main_progressbar);
         dayOfWeekTextview = findViewById(R.id.day_ofweek_tv);
         mDay = getDay();
         dayOfWeekTextview.setText(mDay);

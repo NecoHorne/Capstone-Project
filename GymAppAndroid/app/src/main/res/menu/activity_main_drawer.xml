@@ -5,15 +5,15 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_measure"
             android:icon="@drawable/ic_body"
-            android:title="My Measurements" />
+            android:title="Add Measurement" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_diet"
-            android:title="Diet" />
+            android:id="@+id/nav_progress"
+            android:icon="@drawable/ic_scale"
+            android:title="My Progress" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_program"
             android:icon="@drawable/ic_dumbbell"
             android:title="My Program" />
         <item
@@ -21,8 +21,9 @@
             android:icon="@drawable/ic_calendar"
             android:title="Calendar" />
         <item
-            android:icon="@drawable/ic_scale"
-            android:title="Scale" />
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_diet"
+            android:title="Diet" />
     </group>
 
     <item android:title="Communicate">

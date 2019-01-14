@@ -257,7 +257,7 @@ public class AddProgramActivity extends AppCompatActivity {
         mProgram.setDay(daySelected);
 
         mProgram.setSets(muscleSets);
-        Log.d(TAG, "saveProgram: " + mProgram.toString());
+//        Log.d(TAG, "saveProgram: " + mProgram.toString());
         new DataBaseOperation().execute(mProgram);
 
         finish();
@@ -269,7 +269,7 @@ public class AddProgramActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
             if(mDatabase.ProgramDao().searchProgramForDay(daySelected) != null){
                 mProgram = mDatabase.ProgramDao().searchProgramForDay(daySelected);
-                Log.d(TAG, "doInBackground: " + mProgram.toString());
+//                Log.d(TAG, "doInBackground: " + mProgram.toString());
                 return true;
             } else {
                 return false;
@@ -286,6 +286,11 @@ public class AddProgramActivity extends AppCompatActivity {
                     ArrayList<BlockExercise> exercises = set.getExercises();
                     mBlockExerciseArrayList.addAll(exercises);
                 }
+                mAdapter.notifyDataSetChanged();
+            }else {
+                //when the spinner moves to a day which has no associated program clear the list and create a new program.
+                mBlockExerciseArrayList.clear();
+                mProgram = new Program();
                 mAdapter.notifyDataSetChanged();
             }
         }

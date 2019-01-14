@@ -64,22 +64,20 @@
                 android:layout_below="@+id/day_ofweek_tv"
                 android:layout_alignStart="@+id/day_ofweek_tv"
                 android:layout_alignEnd="@+id/day_ofweek_tv"
-                android:layout_alignBottom="@+id/imageView5"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
                 android:padding="8dp"
                 android:text="Muscle Groups"
                 android:textAlignment="viewStart"
                 android:textColor="@color/PAMPAS"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:listitem="@layout/muscle_set_list_layout" />
 
     </LinearLayout>

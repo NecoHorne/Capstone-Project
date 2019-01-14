@@ -18,13 +18,14 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.necohorne.gymapp.Models.MuscleSet;
 import com.necohorne.gymapp.Models.Program;
 import com.necohorne.gymapp.R;
 import com.necohorne.gymapp.Utils.Data.ProgramDatabase;
 import com.necohorne.gymapp.Utils.RecyclerAdaptors.MainRecyclerAdapter;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
@@ -131,13 +132,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         switch(id){
-            case R.id.nav_camera:
-                //
+            case R.id.nav_measure:
+                startActivity(new Intent(MainActivity.this, MeasureActivity.class));
                 break;
             case R.id.nav_gallery:
                 //
                 break;
-            case R.id.nav_slideshow:
+            case R.id.nav_program:
                 //
                 break;
             case R.id.nav_manage:
@@ -175,6 +176,16 @@ public class MainActivity extends AppCompatActivity
             if(program != null){
                 mAdapter = new MainRecyclerAdapter(getApplicationContext(), program);
                 mRecyclerView.setAdapter(mAdapter);
+
+                StringBuilder sb = new StringBuilder();
+                ArrayList<MuscleSet> muscleSets = program.getSets();
+                for(int i = 0; i < muscleSets.size(); i++) {
+                    sb.append(muscleSets.get(i).getMuscleName());
+                    if(i != muscleSets.size() - 1){
+                        sb.append(", ");
+                    }
+                }
+                musclesTextview.setText(sb.toString());
             }
         }
     }

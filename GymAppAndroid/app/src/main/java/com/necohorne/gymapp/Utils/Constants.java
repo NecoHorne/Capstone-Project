@@ -18,6 +18,13 @@ public class Constants {
     //Intents
     public static final String INTENT_EXERCISE = "intentExercise";
 
+    //Shared Preferences
+    public static final String PREFS = "prefs";
+    public static final String AGE = "age_prefs";
+    public static final String SEX = "sex_prefs";
+    public static final String ACTIVITY = "activity_prefs";
+    public static final String HEIGHT = "height_prefs";
+
     //Exercise Types
     public static final String STRENGTH = "Strength";
     public static final String STRETCHING = "Stretching";

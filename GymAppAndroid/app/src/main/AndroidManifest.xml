@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.Activities.AddProgramActivity" />
-        <activity android:name=".UI.Activities.DetailExerciseActivity"></activity>
+        <activity android:name=".UI.Activities.DetailExerciseActivity" />
+        <activity android:name=".UI.Activities.MeasureActivity"></activity>
     </application>
 
 </manifest>

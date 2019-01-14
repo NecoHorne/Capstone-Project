@@ -29,7 +29,7 @@ public class Calculators {
     private static final int FAT_CAL_GRAM = 9;
     private static final int CARBS_CAL_GRAM = 4;
 
-    public double getRestingEnergyExpenditure(double weight, double height, int age, boolean male){
+    public static double getRestingEnergyExpenditure(double weight, double height, int age, boolean male){
         //weight in kg, heigh in cm
         //return in calories
         if(male){
@@ -39,27 +39,27 @@ public class Calculators {
         }
     }
 
-    public double getTotalDailyEnergyExpenditure(double ree, double activityLevel){
+    public static double getTotalDailyEnergyExpenditure(double ree, double activityLevel){
         //in calories
         return ree*activityLevel;
     }
 
-    public double getProteinAmount(double weight){
+    public static double getProteinAmount(double weight){
         //in grams
         return (weight*KG_TO_POUND)*PROTEIN_PER_POUND;
     }
 
-    public double getFatAmount(double tdee){
+    public static double getFatAmount(double tdee){
         //in grams
         return (tdee*0.25)/FAT_CAL_GRAM;
     }
 
-    public double getCarbAmount(double protein, double fat, double tdee){
+    public static double getCarbAmount(double protein, double fat, double tdee){
         //in grams
         return (tdee - (protein*PROTEIN_CAL_GRAM) - (fat*FAT_CAL_GRAM))/CARBS_CAL_GRAM;
     }
 
-    public double getBMI(double height, double weight, boolean metric){
+    public static double getBMI(double height, double weight, boolean metric){
         if(metric){
             height = height/100; //get height in meters
             //weight in kg
@@ -70,7 +70,7 @@ public class Calculators {
         }
     }
 
-    public String getBMICatagory(double bmi){
+    public static String getBMICatagory(double bmi){
 
         if(bmi < 15){
             return "Very severely underweight";
@@ -92,11 +92,11 @@ public class Calculators {
         return "error";
     }
 
-    public int waistToHeightRatio(double waist, double height){
+    public static int waistToHeightRatio(double waist, double height){
         return (int) Math.round((waist/height)*100);
     }
 
-    public String getWTHCatagory(int ratio, boolean male) {
+    public static String getWTHCatagory(int ratio, boolean male) {
 
         if(male) {
             if(ratio < 42) {

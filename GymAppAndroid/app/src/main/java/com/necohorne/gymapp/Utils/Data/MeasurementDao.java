@@ -22,6 +22,13 @@ public interface MeasurementDao {
 //    @Query("SELECT * FROM measurement WHERE day = :searchDay")
 //    Measurement searchMeasurement(String searchDay);
 
+    @Query("SELECT count(*) FROM measurement")
+    int dbCount();
+
+    //Return the last item added to the DB.
+    @Query("SELECT * FROM measurement ORDER BY primaryKey DESC limit 1" )
+    Measurement lastMeasurement();
+
     @Insert
     void insertMeasurement(Measurement measurement);
 
@@ -30,6 +37,5 @@ public interface MeasurementDao {
 
     @Delete
     void deleteMeasurement(Measurement measurement);
-
 
 }

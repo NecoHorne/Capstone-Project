@@ -8,6 +8,21 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="login">login</string>
 
+    <string name="sedentary">Sedentary</string>
+    <string name="light">Light</string>
+    <string name="moderate">Moderate</string>
+    <string name="very_active">Very Active</string>
+    <string name="extremely_active">Extremely Active</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+    <string name="kilo_cals">&#160;kCal</string>
+    <string name="centimeter">&#160;cm</string>
+    <string name="kilogram">&#160;Kg</string>
+    <string name="fat">&#160;g \nFat</string>
+    <string name="protein">&#160;g \nProtein</string>
+    <string name="carbs">&#160;g \nCarbs</string>
+
     <array name="exerciseType_keys">
         <item>Strength</item>
         <item>Stretching</item>

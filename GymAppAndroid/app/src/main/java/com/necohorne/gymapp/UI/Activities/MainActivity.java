@@ -1,6 +1,7 @@
 package com.necohorne.gymapp.UI.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,13 +18,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.necohorne.gymapp.Models.MuscleSet;
 import com.necohorne.gymapp.Models.Program;
 import com.necohorne.gymapp.R;
+import com.necohorne.gymapp.UI.Dialog.BasicInfoDialog;
+import com.necohorne.gymapp.Utils.Constants;
+import com.necohorne.gymapp.Utils.Data.MeasurementsDatabase;
 import com.necohorne.gymapp.Utils.Data.ProgramDatabase;
 import com.necohorne.gymapp.Utils.RecyclerAdaptors.MainRecyclerAdapter;
 
+import io.fabric.sdk.android.Fabric;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,10 +50,13 @@ public class MainActivity extends AppCompatActivity
     //Data Objects
     public String mDay;
     public ProgramDatabase mDatabase;
+    private SharedPreferences mSharedPreferences;
+    private boolean prefBool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,9 +81,30 @@ public class MainActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         initUI();
+
+        mSharedPreferences = getSharedPreferences(Constants.PREFS,0);
+        checkPrefs();
+        basicInfoDialogPrompt();
+
         mDatabase = ProgramDatabase.getInstance(getApplicationContext());
         new DatabaseOperation().execute();
 
+    }
+
+    private void checkPrefs(){
+        boolean age = mSharedPreferences.contains( Constants.AGE);
+        boolean height = mSharedPreferences.contains( Constants.HEIGHT);
+        boolean activity = mSharedPreferences.contains( Constants.ACTIVITY);
+        boolean sex = mSharedPreferences.contains( Constants.SEX);
+        prefBool = age && height && activity && sex;
+    }
+
+    private void basicInfoDialogPrompt() {
+        //check if the shared preferences contain the basic info of the user if not prompt the user to add details
+        if(!prefBool){
+            BasicInfoDialog dialog = new BasicInfoDialog();
+            dialog.show(getFragmentManager(), "info_dialog_prompt");
+        }
     }
 
     @Override
@@ -130,24 +161,33 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        BasicInfoDialog dialog = new BasicInfoDialog();
 
         switch(id){
             case R.id.nav_measure:
-                startActivity(new Intent(MainActivity.this, MeasureActivity.class));
+                if(prefBool){
+                    startActivity(new Intent(MainActivity.this, MeasureActivity.class));
+                } else {
+                    dialog.show(getFragmentManager(), "info_dialog_prompt");
+                }
                 break;
             case R.id.nav_gallery:
                 //
                 break;
-            case R.id.nav_program:
-                //
+            case R.id.nav_update:
+                dialog.show(getFragmentManager(), "info_dialog_prompt");
+                break;
+            case R.id.nav_stats:
+                if(prefBool){
+                    new CheckMeasurementDB().execute();
+                } else{
+                    dialog.show(getFragmentManager(), "info_dialog_prompt");
+                }
                 break;
             case R.id.nav_manage:
                 //
                 break;
             case R.id.nav_share:
-                //
-                break;
-            case R.id.nav_send:
                 //
                 break;
 
@@ -186,6 +226,23 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
                 musclesTextview.setText(sb.toString());
+            }
+        }
+    }
+
+    public class CheckMeasurementDB extends AsyncTask<Void, Void, Integer>{
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            return MeasurementsDatabase.getInstance(getApplicationContext()).MeasurementDao().dbCount();
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            if(integer > 0){
+                startActivity(new Intent(getApplicationContext(), UserActivity.class));
+            } else {
+                Toast.makeText(getApplicationContext(), "You have not added any measurements yet, Please add a measurement and try again", Toast.LENGTH_LONG).show();
             }
         }
     }

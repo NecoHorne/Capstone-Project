@@ -12,16 +12,16 @@ public class Calculators {
      */
 
     //Activity Level
-    private static final double SEDENTERAY = 1.2;
-    private static final double LIGHT = 1.375;
-    private static final double MODERATE = 1.55;
-    private static final double VERY_ACTIVE = 1.725;
-    private static final double EXTREMELY_ACTIVE = 1.975;
+    public static final double SEDENTERAY = 1.2;
+    public static final double LIGHT = 1.375;
+    public static final double MODERATE = 1.55;
+    public static final double VERY_ACTIVE = 1.725;
+    public static final double EXTREMELY_ACTIVE = 1.975;
 
     //Conversions
     private static final double KG_TO_POUND = 2.205;
     private static final double CM_TO_INCHES = 2.54;
-    private static final double PROTEIN_PER_POUND = 0.825;
+    private static final double PROTEIN_PER_POUND = 1.2;
     private static final double KILOJOULE_TO_CALORIE = 4.1868;
 
     //Calories per macro
@@ -100,23 +100,23 @@ public class Calculators {
 
         if(male) {
             if(ratio < 42) {
-                return "underweight";
+                return "Underweight";
             } else if(ratio >= 43 && ratio <= 52) {
-                return "healthy weight";
+                return "Healthy weight";
             } else if(ratio >= 53 && ratio <= 62) {
-                return "overweight";
+                return "Overweight";
             } else if(ratio >= 63)
-                return "obese";
+                return "Obese";
         } else {
 
             if(ratio < 42) {
-                return "underweight";
+                return "Underweight";
             } else if(ratio >= 43 && ratio <= 48) {
-                return "healthy weight";
+                return "Healthy weight";
             } else if(ratio >= 49 && ratio <= 57) {
-                return "overweight";
+                return "Overweight";
             } else if(ratio >= 58) {
-                return "obese";
+                return "Obese";
             }
         }
         return "error";

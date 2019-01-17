@@ -10,6 +10,7 @@ Measure your current body progress
 - Firebase auth
 - Firebase appindexing
 - Firebase invites
+- Crashlytics with Fabric and Firebase
 - de.hdodenhof:circleimageview
 - Picasso
 - Google gson

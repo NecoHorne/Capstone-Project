@@ -23,9 +23,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.Activities.AddProgramActivity" />
-        <activity android:name=".UI.Activities.DetailExerciseActivity" />
-        <activity android:name=".UI.Activities.MeasureActivity"></activity>
+        <activity android:name=".UI.Activities.AddProgramActivity"
+            android:parentActivityName=".UI.Activities.MainActivity"></activity>
+        <activity android:name=".UI.Activities.DetailExerciseActivity"></activity>
+        <activity android:name=".UI.Activities.MeasureActivity"
+            android:parentActivityName=".UI.Activities.MainActivity"></activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="a412612b25f3adcab0d0a7642283c2c1c6881c87" />
+
+        <activity android:name=".UI.Activities.UserActivity"
+            android:parentActivityName=".UI.Activities.MainActivity">
+        </activity>
     </application>
 
 </manifest>

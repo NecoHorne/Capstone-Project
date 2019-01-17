@@ -1,17 +1,20 @@
 package com.necohorne.gymapp.UI.Activities;
 
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.necohorne.gymapp.Models.Measurement;
 import com.necohorne.gymapp.R;
 import com.necohorne.gymapp.Utils.Calculators;
 import com.necohorne.gymapp.Utils.Constants;
+import com.necohorne.gymapp.Utils.Data.MeasurementsDatabase;
 
 import java.util.Date;
 
@@ -35,12 +38,14 @@ public class MeasureActivity extends AppCompatActivity {
 
     //Data
     private SharedPreferences mSharedPreferences;
+    private MeasurementsDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_measure);
         initUI();
+        mDatabase = MeasurementsDatabase.getInstance(getApplicationContext());
         mSharedPreferences = getSharedPreferences(Constants.PREFS,0);
         checkPrefs();
     }
@@ -145,8 +150,20 @@ public class MeasureActivity extends AppCompatActivity {
         measurement.setAge(age);
         boolean male = mSharedPreferences.getBoolean(Constants.SEX, true);
         measurement.setMale(male);
-        double activityLevel = mSharedPreferences.getFloat(Constants.ACTIVITY, 1);
-        measurement.setActivityLevel(activityLevel);
+        String activityLevel = mSharedPreferences.getString(Constants.ACTIVITY, "");
+
+        if(activityLevel.equals(getString(R.string.sedentary))){
+            measurement.setActivityLevel(Calculators.SEDENTERAY);
+        } else if(activityLevel.equals(getString(R.string.light))){
+            measurement.setActivityLevel(Calculators.LIGHT);
+        }else if(activityLevel.equals(getString(R.string.moderate))){
+            measurement.setActivityLevel(Calculators.MODERATE);
+        }else if(activityLevel.equals(getString(R.string.very_active))){
+            measurement.setActivityLevel(Calculators.VERY_ACTIVE);
+        }else if(activityLevel.equals(getString(R.string.extremely_active))){
+            measurement.setActivityLevel(Calculators.EXTREMELY_ACTIVE);
+        }
+
         double height = mSharedPreferences.getFloat(Constants.HEIGHT,0);
         measurement.setHeight(height);
 
@@ -154,7 +171,7 @@ public class MeasureActivity extends AppCompatActivity {
         //if weight is more than 0 use the Calculators class to calculate the rest of the measurement variables
         if(weight > 0){
             measurement.setRestingEnergyExpenditure(Calculators.getRestingEnergyExpenditure(weight, height, age, male));
-            measurement.setTotalDailyEnergyExpenditure(Calculators.getTotalDailyEnergyExpenditure(measurement.getRestingEnergyExpenditure(), activityLevel));
+            measurement.setTotalDailyEnergyExpenditure(Calculators.getTotalDailyEnergyExpenditure(measurement.getRestingEnergyExpenditure(), measurement.getActivityLevel()));
             measurement.setProteinAmount(Calculators.getProteinAmount(weight));
             measurement.setFatAmount(Calculators.getFatAmount(measurement.getTotalDailyEnergyExpenditure()));
             measurement.setCarbAmount(Calculators.getCarbAmount(measurement.getProteinAmount(), measurement.getFatAmount(), measurement.getTotalDailyEnergyExpenditure()));
@@ -170,11 +187,25 @@ public class MeasureActivity extends AppCompatActivity {
     private void saveMeasurements() {
 
         Measurement measurement = getMeasurements();
-        //TODO Save measurement object to database
+        new SaveToDatabase().execute(measurement);
         Log.d(TAG, "saveMeasurements: " + measurement.toString());
-
+        finish();
 
     }
 
+    public class SaveToDatabase extends AsyncTask<Measurement, Void, Boolean>{
 
+        @Override
+        protected Boolean doInBackground(Measurement... measurements) {
+            Measurement measurement = measurements[0];
+            mDatabase.MeasurementDao().insertMeasurement(measurement);
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            Toast.makeText(getApplicationContext(), "Measurement Saved.", Toast.LENGTH_LONG).show();
+        }
+    }
 }

@@ -18,16 +18,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/main_header_tv"
-            android:layout_width="match_parent"
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="My Program"
-            android:textAlignment="textStart"
-            android:textColor="@color/PAMPAS"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id_test">
+
+        </com.google.android.gms.ads.AdView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                 android:layout_marginEnd="0dp"
                 android:layout_toEndOf="@+id/imageView5"
                 android:padding="8dp"
-                android:text="Day of Week"
+                android:text="@string/day_of_week"
                 android:textAlignment="viewStart"
                 android:textColor="@color/PAMPAS"
                 android:textSize="18sp"
@@ -67,7 +67,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="0dp"
                 android:padding="8dp"
-                android:text="Muscle Groups"
+                android:text="@string/muscle_groups"
                 android:textAlignment="viewStart"
                 android:textColor="@color/PAMPAS"
                 android:textSize="14sp"

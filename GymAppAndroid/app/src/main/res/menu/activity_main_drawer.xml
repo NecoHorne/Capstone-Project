@@ -16,14 +16,6 @@
             android:id="@+id/nav_program"
             android:icon="@drawable/ic_dumbbell"
             android:title="My Program" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_calendar"
-            android:title="Calendar" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_diet"
-            android:title="Diet" />
     </group>
 
     <item android:title="Communicate">

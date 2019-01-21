@@ -1,7 +1,5 @@
 package com.necohorne.gymapp.Utils;
 
-import java.util.ArrayList;
-
 public class Constants {
 
     //https://human.biodigital.com
@@ -24,6 +22,24 @@ public class Constants {
     public static final String SEX = "sex_prefs";
     public static final String ACTIVITY = "activity_prefs";
     public static final String HEIGHT = "height_prefs";
+
+    //Activity Levels
+    public static final String SEDENTARY = "Sedentary";
+    public static final String LIGHT = "Light";
+    public static final String MODERATE = "Moderate";
+    public static final String VERY_ACTIVE = "Very Active";
+    public static final String EXTREMELY_ACTIVE = "Extremely Active";
+
+    //Days
+    public static final String DAY = "day";
+    public static final String MONDAY = "Monday";
+    public static final String TUESDAY = "Tuesday";
+    public static final String WEDNESDAY = "Wednesday";
+    public static final String THURSDAY = "Thursday";
+    public static final String FRIDAY = "Friday";
+    public static final String SATURDAY = "Saturday";
+    public static final String SUNDAY = "Sunday";
+
 
     //Exercise Types
     public static final String STRENGTH = "Strength";

@@ -21,6 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.necohorne.gymapp.Models.MuscleSet;
 import com.necohorne.gymapp.Models.Program;
 import com.necohorne.gymapp.R;
@@ -30,18 +34,17 @@ import com.necohorne.gymapp.Utils.Data.MeasurementsDatabase;
 import com.necohorne.gymapp.Utils.Data.ProgramDatabase;
 import com.necohorne.gymapp.Utils.RecyclerAdaptors.MainRecyclerAdapter;
 
-import io.fabric.sdk.android.Fabric;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    //UI Elements
-    private TextView dayOfWeekTextview;
     private TextView musclesTextview;
     private RecyclerView mRecyclerView;
     public MainRecyclerAdapter mAdapter;
@@ -52,6 +55,9 @@ public class MainActivity extends AppCompatActivity
     public ProgramDatabase mDatabase;
     private SharedPreferences mSharedPreferences;
     private boolean prefBool;
+
+    private Intent mLogOutIntent;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +87,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         initUI();
+        mLogOutIntent = new Intent( MainActivity.this, LoginActivity.class );
+        checkAuthenticationState();
 
         mSharedPreferences = getSharedPreferences(Constants.PREFS,0);
         checkPrefs();
@@ -89,6 +97,25 @@ public class MainActivity extends AppCompatActivity
         mDatabase = ProgramDatabase.getInstance(getApplicationContext());
         new DatabaseOperation().execute();
 
+    }
+
+    private void checkAuthenticationState() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            mLogOutIntent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity( mLogOutIntent );
+            finish();
+        }
+    }
+
+    private void logOut() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText( MainActivity.this, "Successfully logged out", Toast.LENGTH_LONG ).show();
+            startActivity( mLogOutIntent );
+            finish();
+        }
     }
 
     private void checkPrefs(){
@@ -115,12 +142,19 @@ public class MainActivity extends AppCompatActivity
 
     private void initUI(){
         mProgressBar = findViewById(R.id.main_progressbar);
-        dayOfWeekTextview = findViewById(R.id.day_ofweek_tv);
+        //UI Elements
+        TextView dayOfWeekTextview = findViewById(R.id.day_ofweek_tv);
         mDay = getDay();
         dayOfWeekTextview.setText(mDay);
         initRecycler();
         musclesTextview = findViewById(R.id.muscle_groups_tv);
-
+        //ad view
+//        AdView adView = new AdView(this);
+//        adView.setAdSize(AdSize.BANNER);
+//        adView.setAdUnitId(getString(R.string.banner_ad_unit_id_test));
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     private void initRecycler(){
@@ -162,7 +196,6 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         BasicInfoDialog dialog = new BasicInfoDialog();
-
         switch(id){
             case R.id.nav_measure:
                 if(prefBool){
@@ -171,8 +204,8 @@ public class MainActivity extends AppCompatActivity
                     dialog.show(getFragmentManager(), "info_dialog_prompt");
                 }
                 break;
-            case R.id.nav_gallery:
-                //
+            case R.id.nav_program:
+                startActivity(new Intent(MainActivity.this, MyProgramActivity.class));
                 break;
             case R.id.nav_update:
                 dialog.show(getFragmentManager(), "info_dialog_prompt");
@@ -184,13 +217,12 @@ public class MainActivity extends AppCompatActivity
                     dialog.show(getFragmentManager(), "info_dialog_prompt");
                 }
                 break;
-            case R.id.nav_manage:
-                //
-                break;
             case R.id.nav_share:
                 //
                 break;
-
+            case R.id.nav_logout:
+                logOut();
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

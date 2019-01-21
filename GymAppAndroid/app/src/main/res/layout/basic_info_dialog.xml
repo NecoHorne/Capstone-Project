@@ -12,7 +12,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Info"
+        android:text="@string/my_info"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Age"
+        android:hint="@string/age"
         android:inputType="number"
         android:textAlignment="center"
         android:textSize="14sp" />
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Height in cm"
+        android:hint="@string/height_in_cm"
         android:inputType="number"
         android:textAlignment="center"
         android:textSize="14sp" />
@@ -50,16 +50,16 @@
             android:layout_weight="1"
             android:showText="false"
             android:splitTrack="false"
-            android:text="Sex:"
-            android:textOff="Female"
-            android:textOn="Male" />
+            android:text="@string/sex_1"
+            android:textOff="@string/female"
+            android:textOn="@string/male" />
 
         <TextView
             android:id="@+id/dialog_sex_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sex"
+            android:text="@string/sex"
             android:textAlignment="center" />
     </LinearLayout>
 
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Activity Level"
+        android:text="@string/activity_level"
         android:textAlignment="center" />
 
     <SeekBar
@@ -76,7 +76,7 @@
         style="@style/Widget.AppCompat.SeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="5"
+        android:max="4"
         android:padding="8dp"
         android:progress="1" />
 
@@ -85,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Activity Level"
+        android:text="@string/activity_level"
         android:textAlignment="center" />
 
     <Button
@@ -95,6 +95,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:background="@drawable/accent_button_rectangle"
-        android:text="Save" />
+        android:text="@string/save" />
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.necohorne.gymapp.Models.Measurement;
 import com.necohorne.gymapp.R;
+import com.necohorne.gymapp.UI.Dialog.BasicInfoDialog;
 import com.necohorne.gymapp.Utils.Calculators;
 import com.necohorne.gymapp.Utils.Constants;
 import com.necohorne.gymapp.Utils.Data.MeasurementsDatabase;
@@ -25,20 +26,24 @@ public class MeasureActivity extends AppCompatActivity {
     //UI
     private EditText neckEditText;
     private EditText chestEditText;
+    private EditText shoulderEditText;
     private EditText leftArmEditText;
     private EditText rightArmEditText;
     private EditText leftForearmEditText;
     private EditText rightForearmEditText;
     private EditText waistEditText;
+    private EditText hipsEditText;
     private EditText leftLegEditText;
     private EditText rightLegEditText;
     private EditText leftCalfEditText;
     private EditText rightCalfEditText;
     private EditText weightEditText;
+    private EditText bodyFatEditText;
 
     //Data
     private SharedPreferences mSharedPreferences;
     private MeasurementsDatabase mDatabase;
+    private boolean prefBool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,21 +76,38 @@ public class MeasureActivity extends AppCompatActivity {
     private void initUI() {
         neckEditText = findViewById(R.id.neck_et);
         chestEditText = findViewById(R.id.chest_et);
+        shoulderEditText = findViewById(R.id.shoulders_et);
         leftArmEditText = findViewById(R.id.left_arm_et);
         rightArmEditText = findViewById(R.id.right_arm_et);
         leftForearmEditText = findViewById(R.id.left_forearm_et);
         rightForearmEditText = findViewById(R.id.right_forearm_et);
         waistEditText = findViewById(R.id.waist_et);
+        hipsEditText = findViewById(R.id.hips_et);
         leftLegEditText = findViewById(R.id.left_leg_et);
         rightLegEditText = findViewById(R.id.right_leg_et);
         leftCalfEditText = findViewById(R.id.left_calf_et);
         rightCalfEditText = findViewById(R.id.right_calf_et);
         weightEditText = findViewById(R.id.weight_et);
+        bodyFatEditText = findViewById(R.id.body_fat_et);
     }
 
     //Data Handling Methods
-    private void checkPrefs() {
-        //TODO
+    private void checkPrefs(){
+        boolean age = mSharedPreferences.contains( Constants.AGE);
+        boolean height = mSharedPreferences.contains( Constants.HEIGHT);
+        boolean activity = mSharedPreferences.contains( Constants.ACTIVITY);
+        boolean sex = mSharedPreferences.contains( Constants.SEX);
+        prefBool = age && height && activity && sex;
+
+        basicInfoDialogPrompt();
+    }
+
+    private void basicInfoDialogPrompt() {
+        //check if the shared preferences contain the basic info of the user if not prompt the user to add details
+        if(!prefBool){
+            BasicInfoDialog dialog = new BasicInfoDialog();
+            dialog.show(getFragmentManager(), "info_dialog_prompt");
+        }
     }
 
     private Measurement getMeasurements(){
@@ -104,6 +126,10 @@ public class MeasureActivity extends AppCompatActivity {
         String chestString = chestEditText.getText().toString();
         double chest = (!chestString.equals("")) ? Double.parseDouble(chestString) : 0;
         measurement.setChest(chest);
+
+        String shoulderString = shoulderEditText.getText().toString();
+        double shoulders = (!shoulderString.equals("")) ? Double.parseDouble(shoulderString) : 0;
+        measurement.setShoulders(shoulders);
 
         String leftArmString = leftArmEditText.getText().toString();
         double leftArm = (!leftArmString.equals("")) ? Double.parseDouble(leftArmString) : 0;
@@ -125,6 +151,10 @@ public class MeasureActivity extends AppCompatActivity {
         double waist = (!waistString.equals("")) ? Double.parseDouble(waistString) : 0;
         measurement.setWaist(waist);
 
+        String hipsString = hipsEditText.getText().toString();
+        double hips = (!hipsString.equals("")) ? Double.parseDouble(hipsString) : 0;
+        measurement.setHips(hips);
+
         String leftLegString = leftLegEditText.getText().toString();
         double leftLeg = (!leftLegString.equals("")) ? Double.parseDouble(leftLegString) : 0;
         measurement.setLeftLeg(leftLeg);
@@ -144,6 +174,10 @@ public class MeasureActivity extends AppCompatActivity {
         String weightString = weightEditText.getText().toString();
         double weight = (!weightString.equals("")) ? Double.parseDouble(weightString) : 0;
         measurement.setWeight(weight);
+
+        String bodyFatString = bodyFatEditText.getText().toString();
+        double bodyFat = (!bodyFatString.equals("")) ? Double.parseDouble(bodyFatString) : 0;
+        measurement.setBodyFat(bodyFat);
 
         //below variables are should be retrieved from the Shared Preferences.
         int age = mSharedPreferences.getInt(Constants.AGE, 0);
@@ -167,7 +201,6 @@ public class MeasureActivity extends AppCompatActivity {
         double height = mSharedPreferences.getFloat(Constants.HEIGHT,0);
         measurement.setHeight(height);
 
-
         //if weight is more than 0 use the Calculators class to calculate the rest of the measurement variables
         if(weight > 0){
             measurement.setRestingEnergyExpenditure(Calculators.getRestingEnergyExpenditure(weight, height, age, male));
@@ -185,12 +218,14 @@ public class MeasureActivity extends AppCompatActivity {
     }
 
     private void saveMeasurements() {
-
-        Measurement measurement = getMeasurements();
-        new SaveToDatabase().execute(measurement);
-        Log.d(TAG, "saveMeasurements: " + measurement.toString());
-        finish();
-
+        if(prefBool){
+            Measurement measurement = getMeasurements();
+            new SaveToDatabase().execute(measurement);
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), "Please add basic information before adding a measurement", Toast.LENGTH_LONG).show();
+            basicInfoDialogPrompt();
+        }
     }
 
     public class SaveToDatabase extends AsyncTask<Measurement, Void, Boolean>{

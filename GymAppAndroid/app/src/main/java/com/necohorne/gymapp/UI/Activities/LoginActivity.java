@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +24,8 @@ import com.necohorne.gymapp.R;
 import com.necohorne.gymapp.UI.Dialog.ResendVerificationDialog;
 import com.necohorne.gymapp.UI.Dialog.ResetPasswordDialog;
 import com.necohorne.gymapp.Utils.Interfaces.DialogCloseListener;
+
+import io.fabric.sdk.android.Fabric;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -39,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements DialogCloseListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_login);
         emailLoginSetup();
         mProgressBar = findViewById(R.id.email_progressbar);

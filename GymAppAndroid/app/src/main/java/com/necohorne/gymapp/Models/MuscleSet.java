@@ -60,7 +60,6 @@ public class MuscleSet implements Parcelable {
     }
 
     //Other Class Methods
-
     @Override
     public String toString() {
         return "MuscleSet{" +

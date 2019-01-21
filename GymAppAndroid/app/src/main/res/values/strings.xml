@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GymApp</string>
+    <string name="app_name">Body Planner</string>
     <string name="action_settings">Settings</string>
     <string name="resend_verification_email">Resend Verification Email</string>
     <string name="email">Email</string>
@@ -72,6 +72,14 @@
         <item>Sunday</item>
     </array>
 
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -79,12 +87,80 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title">Title</string>
     <string name="delete">Delete</string>
     <string name="subtitle">SubTitle</string>
+    <string name="title">Title</string>
 
+
+    <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_application_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="scale_image">Scale Image</string>
+    <string name="weight_kg">Weight Kg</string>
+    <string name="body_fat">Body Fat %</string>
+    <string name="neck_cm">Neck cm</string>
+    <string name="shoulders_cm">Shoulders cm</string>
+    <string name="chest_cm">Chest cm</string>
+    <string name="neck_image">Neck Image</string>
+    <string name="hips_cm">Hips cm</string>
+    <string name="waist_cm">Waist cm</string>
+    <string name="torso_image">Torso Image</string>
+    <string name="sets">Sets</string>
+    <string name="reps_per_set">Reps Per Set</string>
+    <string name="add">Add</string>
+    <string name="textview">TextView</string>
+    <string name="equipment_used">Equipment used:</string>
+    <string name="instructions">Instructions</string>
+    <string name="none">None</string>
+    <string name="monday_edit_program_button">Monday edit program button</string>
+    <string name="sunday_edit_program_button">Sunday edit program button</string>
+    <string name="saturday_edit_program_button">Saturday edit program button</string>
+    <string name="friday_edit_program_button">Friday edit program button</string>
+    <string name="thursday_edit_program_button">Thursday edit program button</string>
+    <string name="wednesday_edit_program_button">Wednesday edit program button</string>
+    <string name="tuesday_edit_program_button">Tuesday edit program button</string>
+    <string name="create_a_new_account">Create a new Account</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="enter_a_password">Enter a Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="app_logo_image">app logo image</string>
+    <string name="cancel">CANCEL</string>
+    <string name="send">SEND</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="my_stats">My Stats</string>
+    <string name="my_info">My Info</string>
+    <string name="age">Age</string>
+    <string name="height_in_cm">Height in cm</string>
+    <string name="sex">Sex</string>
+    <string name="sex_1">Sex</string>
+    <string name="activity_level">Activity Level</string>
+    <string name="save">Save</string>
+    <string name="height">Height</string>
+    <string name="day_of_week">Day of Week</string>
+    <string name="muscle_groups">Muscle Groups</string>
+    <string name="resting_energy_expenditure">Resting Energy Expenditure</string>
+    <string name="total_daily_energy_expenditure">Total Daily Energy Expenditure</string>
+    <string name="exercise">Exercise</string>
+    <string name="calories">Calories</string>
+    <string name="gain_weight">Gain Weight</string>
+    <string name="left_arm_cm">Left Arm cm</string>
+    <string name="right_arm_cm">Right Arm cm</string>
+    <string name="left_forearm_cm">Left Forearm cm</string>
+    <string name="right_forearm_cm">Right Forearm cm</string>
+    <string name="left_thigh_cm">Left Thigh cm</string>
+    <string name="right_thigh_cm">Right Thigh cm</string>
+    <string name="left_calf_cm">Left Calf cm</string>
+    <string name="right_calf_cm">Right Calf cm</string>
+    <string name="lose_weight">Lose Weight</string>
+    <string name="maintain_weight">Maintain Weight</string>
+    <string name="muscle">Muscle</string>
+    <string name="set_num">Set #</string>
+    <string name="num_of_reps"># of Reps</string>
+    <string name="bmi">BMI</string>
+    <string name="bmi_category">BMI Category</string>
+    <string name="waist_to_height_category">Waist To Height Category</string>
 
 </resources>
 

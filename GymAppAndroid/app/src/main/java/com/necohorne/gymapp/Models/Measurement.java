@@ -17,17 +17,20 @@ public class Measurement implements Parcelable {
     private Date date;
 
     private double neck;
+    private double shoulders;
     private double chest;
     private double leftArm;
     private double rightArm;
     private double leftForearm;
     private double rightForearm;
     private double waist;
+    private double hips;
     private double leftLeg;
     private double rightLeg;
     private double leftCalf;
     private double rightCalf;
     private double weight;
+    private double bodyFat;
 
     private int age;
     private boolean male;
@@ -48,21 +51,24 @@ public class Measurement implements Parcelable {
     public Measurement() {
     }
 
-    public Measurement(int primaryKey, Date date, double neck, double chest, double leftArm, double rightArm, double leftForearm, double rightForearm, double waist, double leftLeg, double rightLeg, double leftCalf, double rightCalf, double weight, int age, boolean male, double activityLevel, double height, double restingEnergyExpenditure, double totalDailyEnergyExpenditure, double proteinAmount, double fatAmount, double carbAmount, double BMI, String BMICategory, int waistToHeightRatio) {
+    public Measurement(int primaryKey, Date date, double neck, double shoulders, double chest, double leftArm, double rightArm, double leftForearm, double rightForearm, double waist, double hips, double leftLeg, double rightLeg, double leftCalf, double rightCalf, double weight, double bodyFat, int age, boolean male, double activityLevel, double height, double restingEnergyExpenditure, double totalDailyEnergyExpenditure, double proteinAmount, double fatAmount, double carbAmount, double BMI, String BMICategory, int waistToHeightRatio, String WITHCategory) {
         this.primaryKey = primaryKey;
         this.date = date;
         this.neck = neck;
+        this.shoulders = shoulders;
         this.chest = chest;
         this.leftArm = leftArm;
         this.rightArm = rightArm;
         this.leftForearm = leftForearm;
         this.rightForearm = rightForearm;
         this.waist = waist;
+        this.hips = hips;
         this.leftLeg = leftLeg;
         this.rightLeg = rightLeg;
         this.leftCalf = leftCalf;
         this.rightCalf = rightCalf;
         this.weight = weight;
+        this.bodyFat = bodyFat;
         this.age = age;
         this.male = male;
         this.activityLevel = activityLevel;
@@ -75,23 +81,27 @@ public class Measurement implements Parcelable {
         this.BMI = BMI;
         this.BMICategory = BMICategory;
         this.waistToHeightRatio = waistToHeightRatio;
+        this.WITHCategory = WITHCategory;
     }
 
     protected Measurement(Parcel in) {
         date = (Date) in.readSerializable();
         primaryKey = in.readInt();
         neck = in.readDouble();
+        shoulders = in.readDouble();
         chest = in.readDouble();
         leftArm = in.readDouble();
         rightArm = in.readDouble();
         leftForearm = in.readDouble();
         rightForearm = in.readDouble();
         waist = in.readDouble();
+        hips = in.readDouble();
         leftLeg = in.readDouble();
         rightLeg = in.readDouble();
         leftCalf = in.readDouble();
         rightCalf = in.readDouble();
         weight = in.readDouble();
+        bodyFat = in.readDouble();
         age = in.readInt();
         male = in.readByte() != 0;
         activityLevel = in.readDouble();
@@ -129,17 +139,20 @@ public class Measurement implements Parcelable {
         dest.writeSerializable(date);
         dest.writeInt(primaryKey);
         dest.writeDouble(neck);
+        dest.writeDouble(shoulders);
         dest.writeDouble(chest);
         dest.writeDouble(leftArm);
         dest.writeDouble(rightArm);
         dest.writeDouble(leftForearm);
         dest.writeDouble(rightForearm);
         dest.writeDouble(waist);
+        dest.writeDouble(hips);
         dest.writeDouble(leftLeg);
         dest.writeDouble(rightLeg);
         dest.writeDouble(leftCalf);
         dest.writeDouble(rightCalf);
         dest.writeDouble(weight);
+        dest.writeDouble(bodyFat);
         dest.writeInt(age);
         dest.writeByte((byte) (male ? 1 : 0));
         dest.writeDouble(activityLevel);
@@ -177,6 +190,14 @@ public class Measurement implements Parcelable {
 
     public void setNeck(double neck) {
         this.neck = neck;
+    }
+
+    public double getShoulders() {
+        return shoulders;
+    }
+
+    public void setShoulders(double shoulders) {
+        this.shoulders = shoulders;
     }
 
     public double getChest() {
@@ -227,6 +248,14 @@ public class Measurement implements Parcelable {
         this.waist = waist;
     }
 
+    public double getHips() {
+        return hips;
+    }
+
+    public void setHips(double hips) {
+        this.hips = hips;
+    }
+
     public double getLeftLeg() {
         return leftLeg;
     }
@@ -265,6 +294,14 @@ public class Measurement implements Parcelable {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public double getBodyFat() {
+        return bodyFat;
+    }
+
+    public void setBodyFat(double bodyFat) {
+        this.bodyFat = bodyFat;
     }
 
     public int getAge() {
@@ -377,17 +414,20 @@ public class Measurement implements Parcelable {
                 "primaryKey=" + primaryKey +
                 ", date=" + date +
                 ", neck=" + neck +
+                ", shoulders=" + shoulders +
                 ", chest=" + chest +
                 ", leftArm=" + leftArm +
                 ", rightArm=" + rightArm +
                 ", leftForearm=" + leftForearm +
                 ", rightForearm=" + rightForearm +
                 ", waist=" + waist +
+                ", hips=" + hips +
                 ", leftLeg=" + leftLeg +
                 ", rightLeg=" + rightLeg +
                 ", leftCalf=" + leftCalf +
                 ", rightCalf=" + rightCalf +
                 ", weight=" + weight +
+                ", bodyFat=" + bodyFat +
                 ", age=" + age +
                 ", male=" + male +
                 ", activityLevel=" + activityLevel +

@@ -23,11 +23,13 @@ import com.necohorne.gymapp.Models.Exercise;
 import com.necohorne.gymapp.Models.MuscleSet;
 import com.necohorne.gymapp.Models.Program;
 import com.necohorne.gymapp.R;
+import com.necohorne.gymapp.Utils.Constants;
 import com.necohorne.gymapp.Utils.Data.ExerciseDatabaseAdapter;
 import com.necohorne.gymapp.Utils.Data.ProgramDatabase;
 import com.necohorne.gymapp.Utils.RecyclerAdaptors.AddProgramRecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +43,6 @@ public class AddProgramActivity extends AppCompatActivity {
     private Spinner muscleSpinner;
     private Spinner exerciseSpinner;
     private RecyclerView mRecyclerView;
-    private Button addExerciseButton;
     private EditText setsEditText;
     private EditText repsEditText;
     private ProgressBar mProgressBar;
@@ -49,7 +50,6 @@ public class AddProgramActivity extends AppCompatActivity {
     //Data Objects
     private String daySelected;
     private String currentMuscle;
-    private String currentExercise;
     private ArrayList<Exercise> mExerciseArrayList;
     private ArrayList<BlockExercise> mBlockExerciseArrayList;
     private Exercise mExercise;
@@ -99,7 +99,7 @@ public class AddProgramActivity extends AppCompatActivity {
         repsEditText = findViewById(R.id.reps_edit_text);
         setsEditText = findViewById(R.id.sets_edit_text);
 
-        addExerciseButton = findViewById(R.id.add_exercise_button);
+        Button addExerciseButton = findViewById(R.id.add_exercise_button);
         addExerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,6 +120,13 @@ public class AddProgramActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> muscleAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.days, R.layout.spinner_item );
         muscleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         daySpinner.setAdapter(muscleAdapter);
+
+        //check if the intent that launched the activity has a Specific day set from another activity, if so set the spinner to that day.
+        if(getIntent().hasExtra(Constants.DAY)){
+            String intentDay = getIntent().getStringExtra(Constants.DAY);
+            daySpinner.setSelection(getIndex(daySpinner, intentDay));
+        }
+
         daySpinner.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -132,6 +139,17 @@ public class AddProgramActivity extends AppCompatActivity {
 
             }
         } );
+    }
+
+    private int getIndex(Spinner spinner, String day){
+        //get the position of the day in the spinner
+        int index = 0;
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).equals(day)){
+                index = i;
+            }
+        }
+        return index;
     }
 
     private void setMuscleSpinner(){

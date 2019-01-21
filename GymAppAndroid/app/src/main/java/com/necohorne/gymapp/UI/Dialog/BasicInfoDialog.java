@@ -35,10 +35,10 @@ public class BasicInfoDialog extends DialogFragment {
     private TextView mSexTv;
     private SeekBar mActivitySeekBar;
     private TextView mActivityTv;
-    private Button mSaveButton;
 
     private String mActivityLevel;
     private boolean mSex;
+    private boolean prefBool;
 
 
     @Nullable
@@ -52,6 +52,7 @@ public class BasicInfoDialog extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable( Color.TRANSPARENT));
         getDialog().setCancelable(false);
 
+        checkPrefs();
         initUI();
         return mView;
     }
@@ -59,7 +60,14 @@ public class BasicInfoDialog extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
+    private void checkPrefs(){
+        boolean age = mSharedPreferences.contains( Constants.AGE);
+        boolean height = mSharedPreferences.contains( Constants.HEIGHT);
+        boolean activity = mSharedPreferences.contains( Constants.ACTIVITY);
+        boolean sex = mSharedPreferences.contains( Constants.SEX);
+        prefBool = age && height && activity && sex;
     }
 
     public void initUI(){
@@ -118,23 +126,59 @@ public class BasicInfoDialog extends DialogFragment {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                //not used
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                //not used
             }
         });
 
-        mSaveButton = mView.findViewById(R.id.dialog_save_btn);
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
+        Button saveButton = mView.findViewById(R.id.dialog_save_btn);
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveInfo();
             }
         });
+        //get prefs if they already exist.
+        getPrefs();
+    }
 
+    public void getPrefs(){
+        //if prefs have already been saved get them and fill in the dialog.
+        if(prefBool){
+            int age = mSharedPreferences.getInt(Constants.AGE, 0);
+            mAge.setText(String.valueOf(age));
+            boolean male = mSharedPreferences.getBoolean(Constants.SEX, true);
+            mSexSwitch.setChecked(male);
+            String activityLevel = mSharedPreferences.getString(Constants.ACTIVITY, "");
+            switch(activityLevel){
+                case Constants.SEDENTARY:
+                    mActivityTv.setText(mContext.getString(R.string.sedentary));
+                    mActivitySeekBar.setProgress(0);
+                    break;
+                case Constants.LIGHT:
+                    mActivityTv.setText(mContext.getString(R.string.light));
+                    mActivitySeekBar.setProgress(1);
+                    break;
+                case Constants.MODERATE:
+                    mActivityTv.setText(mContext.getString(R.string.moderate));
+                    mActivitySeekBar.setProgress(2);
+                    break;
+                case Constants.VERY_ACTIVE:
+                    mActivityTv.setText(mContext.getString(R.string.very_active));
+                    mActivitySeekBar.setProgress(3);
+                    break;
+                case Constants.EXTREMELY_ACTIVE:
+                    mActivityTv.setText(mContext.getString(R.string.extremely_active));
+                    mActivitySeekBar.setProgress(4);
+                    break;
+            }
+            double height = mSharedPreferences.getFloat(Constants.HEIGHT,0);
+            mHeight.setText(String.valueOf(height));
+        }
     }
 
     private void saveInfo() {

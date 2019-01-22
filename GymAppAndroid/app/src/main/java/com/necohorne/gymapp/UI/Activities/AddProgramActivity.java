@@ -136,7 +136,7 @@ public class AddProgramActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //not used
             }
         } );
     }
@@ -182,7 +182,7 @@ public class AddProgramActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //not used
             }
         } );
     }
@@ -204,7 +204,7 @@ public class AddProgramActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //not used
             }
         } );
 
@@ -231,12 +231,12 @@ public class AddProgramActivity extends AppCompatActivity {
                 blockExercise.setRepsPerSet(reps);
                 mBlockExerciseArrayList.add(blockExercise);
                 mAdapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), "Exercise added to program", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.toast_exercise_added), Toast.LENGTH_LONG).show();
             }else {
-                Toast.makeText(getApplicationContext(), "Sets and reps fields cannot be blank or 0", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.toast_sets_reps_null), Toast.LENGTH_LONG).show();
             }
         }else {
-            Toast.makeText(getApplicationContext(), "Sets and reps fields cannot be blank or 0", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.toast_sets_reps_null), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -281,6 +281,7 @@ public class AddProgramActivity extends AppCompatActivity {
         finish();
     }
 
+    //------------ASYNC TASKS------------//
     public class CheckDatabase extends AsyncTask<Void, Void, Boolean>{
 
         @Override

@@ -78,7 +78,7 @@
                 android:id="@+id/eif_tv4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/calories"
                 android:textColor="@color/BlackLight"

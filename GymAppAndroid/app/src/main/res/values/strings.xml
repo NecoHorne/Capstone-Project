@@ -92,7 +92,6 @@
     <string name="subtitle">SubTitle</string>
     <string name="title">Title</string>
 
-
     <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_application_id">ca-app-pub-3940256099942544~3347511713</string>
     <string name="scale_image">Scale Image</string>
@@ -129,7 +128,7 @@
     <string name="send">SEND</string>
     <string name="reset_password">Reset Password</string>
     <string name="confirm">Confirm</string>
-    <string name="my_stats">My Stats</string>
+
     <string name="my_info">My Info</string>
     <string name="age">Age</string>
     <string name="height_in_cm">Height in cm</string>
@@ -161,6 +160,44 @@
     <string name="bmi">BMI</string>
     <string name="bmi_category">BMI Category</string>
     <string name="waist_to_height_category">Waist To Height Category</string>
+
+    <!--Toast Messages-->
+    <string name="toast_sets_reps_null">Sets and reps fields cannot be blank or 0</string>
+    <string name="toast_exercise_added">Exercise added to program</string>
+    <string name="toast_error_occured">An Error occurred, please try again</string>
+
+    <!--Measurement array-->
+    <array name="measure">
+        <item>Neck</item>
+        <item>Chest</item>
+        <item>Shoulder</item>
+        <item>Left Arm</item>
+        <item>Right Arm</item>
+        <item>Left Forearm</item>
+        <item>Right Forearm</item>
+        <item>Waist</item>
+        <item>Hips</item>
+        <item>Left Thigh</item>
+        <item>Right Thigh</item>
+        <item>Left Calf</item>
+        <item>Right Calf</item>
+        <item>Weight</item>
+        <item>Body Fat</item>
+        <item>All</item>
+    </array>
+
+    <!--Chart-->
+    <string name="chart_title">My Weekly Progress</string>
+    <string name="change">Change</string>
+    <string name="measure_toast_message">Weight and Waist cannot be blank or empty</string>
+    <string name="measure_toast_error">Please add basic information before adding a measurement</string>
+
+    <!--Titles-->
+    <string name="my_progress">My Progress</string>
+    <string name="add_measurement">"Add Measurement"</string>
+    <string name="my_stats">My Stats</string>
+    <string name="my_program">My Program</string>
+    <string name="title_progress">&#160;Progress</string>
 
 </resources>
 

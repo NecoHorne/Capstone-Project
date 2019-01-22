@@ -13,13 +13,6 @@ import com.squareup.picasso.Picasso;
 
 public class DetailExerciseActivity extends AppCompatActivity {
 
-    private ImageView mImageView;
-    private TextView mTitleTv;
-    private TextView mMuscleTv;
-    private TextView mEquipmentTv;
-    private TextView mTypeTv;
-    private TextView mInstructionsTv;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,33 +21,32 @@ public class DetailExerciseActivity extends AppCompatActivity {
         if(exercise != null){
             initUI(exercise);
         }else {
-            Toast.makeText(getApplicationContext(), "An Error occurred, please try again", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.toast_error_occured), Toast.LENGTH_LONG).show();
             finish();
         }
     }
 
     private void initUI(Exercise exercise){
-        mImageView = findViewById(R.id.detail_imageview);
+        ImageView imageView = findViewById(R.id.detail_imageview);
         String url = getImageUrl(exercise);
 
         Picasso.get()
                 .load(url)
                 .placeholder(R.drawable.ic_launcher_foreground)
-                .into(mImageView);
+                .into(imageView);
 
-        mTitleTv = findViewById(R.id.exercise_detail_title_tv);
-        mTitleTv.setText(exercise.getName());
+        setTitle(exercise.getName());
 
-        mMuscleTv = findViewById(R.id.exercise_detail_muscle_tv);
-        mMuscleTv.setText(exercise.getMuscleTargeted());
+        TextView muscleTv = findViewById(R.id.exercise_detail_muscle_tv);
+        muscleTv.setText(exercise.getMuscleTargeted());
 
-        mEquipmentTv = findViewById(R.id.exercise_detail_equip_tv);
-        mEquipmentTv.setText(exercise.getEquipmentType());
+        TextView equipmentTv = findViewById(R.id.exercise_detail_equip_tv);
+        equipmentTv.setText(exercise.getEquipmentType());
 
-        mTypeTv = findViewById(R.id.exercise_detail_type_tv);
-        mTypeTv.setText(exercise.getExerciseType());
+        TextView typeTv = findViewById(R.id.exercise_detail_type_tv);
+        typeTv.setText(exercise.getExerciseType());
 
-        mInstructionsTv = findViewById(R.id.exercise_detail_intructions_tv);
+        TextView instructionsTv = findViewById(R.id.exercise_detail_intructions_tv);
 
         if(exercise.getInstructions() != null){
             StringBuilder stringBuilder = new StringBuilder();
@@ -64,7 +56,7 @@ public class DetailExerciseActivity extends AppCompatActivity {
                 stringBuilder.append(exercise.getInstructions().get(i));
                 stringBuilder.append("\n\n");
             }
-            mInstructionsTv.setText(stringBuilder.toString());
+            instructionsTv.setText(stringBuilder.toString());
         }
     }
 

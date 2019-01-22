@@ -16,6 +16,10 @@
             android:id="@+id/nav_program"
             android:icon="@drawable/ic_dumbbell"
             android:title="My Program" />
+        <item
+            android:id="@+id/nav_progress"
+            android:icon="@drawable/ic_linechart"
+            android:title="My Progress" />
     </group>
 
     <item android:title="Communicate">

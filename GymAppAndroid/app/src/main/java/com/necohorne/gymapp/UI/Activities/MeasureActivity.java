@@ -53,6 +53,7 @@ public class MeasureActivity extends AppCompatActivity {
         mDatabase = MeasurementsDatabase.getInstance(getApplicationContext());
         mSharedPreferences = getSharedPreferences(Constants.PREFS,0);
         checkPrefs();
+        setTitle(getString(R.string.add_measurement));
     }
 
     //Add Program UI Elements
@@ -213,17 +214,20 @@ public class MeasureActivity extends AppCompatActivity {
             measurement.setWaistToHeightRatio(Calculators.waistToHeightRatio(waist, height));
             measurement.setWITHCategory(Calculators.getWTHCatagory(measurement.getWaistToHeightRatio(), male));
         }
-
         return measurement;
     }
 
     private void saveMeasurements() {
         if(prefBool){
             Measurement measurement = getMeasurements();
-            new SaveToDatabase().execute(measurement);
-            finish();
+            if(measurement.getWeight() <= 0 || measurement.getWaist() <=0){
+                Toast.makeText(getApplicationContext(), getString(R.string.measure_toast_message), Toast.LENGTH_LONG).show();
+            } else {
+                new SaveToDatabase().execute(measurement);
+                finish();
+            }
         } else {
-            Toast.makeText(getApplicationContext(), "Please add basic information before adding a measurement", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.measure_toast_error), Toast.LENGTH_LONG).show();
             basicInfoDialogPrompt();
         }
     }

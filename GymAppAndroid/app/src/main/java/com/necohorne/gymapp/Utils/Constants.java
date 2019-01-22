@@ -15,6 +15,7 @@ public class Constants {
 
     //Intents
     public static final String INTENT_EXERCISE = "intentExercise";
+    public static final String INTENT_PROGRESS = "intentProgress";
 
     //Shared Preferences
     public static final String PREFS = "prefs";

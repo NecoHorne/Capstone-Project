@@ -20,7 +20,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,8 +36,6 @@ import com.necohorne.gymapp.Utils.RecyclerAdaptors.MainRecyclerAdapter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -57,12 +54,13 @@ public class MainActivity extends AppCompatActivity
     private boolean prefBool;
 
     private Intent mLogOutIntent;
-    private AdView mAdView;
 
+    //TODO Build Widget
+
+    //------------LIFE CYCLE------------//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -99,69 +97,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void checkAuthenticationState() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            mLogOutIntent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
-            startActivity( mLogOutIntent );
-            finish();
-        }
-    }
-
-    private void logOut() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            FirebaseAuth.getInstance().signOut();
-            Toast.makeText( MainActivity.this, "Successfully logged out", Toast.LENGTH_LONG ).show();
-            startActivity( mLogOutIntent );
-            finish();
-        }
-    }
-
-    private void checkPrefs(){
-        boolean age = mSharedPreferences.contains( Constants.AGE);
-        boolean height = mSharedPreferences.contains( Constants.HEIGHT);
-        boolean activity = mSharedPreferences.contains( Constants.ACTIVITY);
-        boolean sex = mSharedPreferences.contains( Constants.SEX);
-        prefBool = age && height && activity && sex;
-    }
-
-    private void basicInfoDialogPrompt() {
-        //check if the shared preferences contain the basic info of the user if not prompt the user to add details
-        if(!prefBool){
-            BasicInfoDialog dialog = new BasicInfoDialog();
-            dialog.show(getFragmentManager(), "info_dialog_prompt");
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         new DatabaseOperation().execute();
-    }
-
-    private void initUI(){
-        mProgressBar = findViewById(R.id.main_progressbar);
-        //UI Elements
-        TextView dayOfWeekTextview = findViewById(R.id.day_ofweek_tv);
-        mDay = getDay();
-        dayOfWeekTextview.setText(mDay);
-        initRecycler();
-        musclesTextview = findViewById(R.id.muscle_groups_tv);
-        //ad view
-//        AdView adView = new AdView(this);
-//        adView.setAdSize(AdSize.BANNER);
-//        adView.setAdUnitId(getString(R.string.banner_ad_unit_id_test));
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
-
-    private void initRecycler(){
-        mRecyclerView = findViewById(R.id.recycler_main);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-
     }
 
     @Override
@@ -217,6 +156,9 @@ public class MainActivity extends AppCompatActivity
                     dialog.show(getFragmentManager(), "info_dialog_prompt");
                 }
                 break;
+            case R.id.nav_progress:
+                startActivity(new Intent(MainActivity.this, ProgressGridActivity.class));
+                break;
             case R.id.nav_share:
                 //
                 break;
@@ -230,12 +172,70 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    //------------METHODS------------//
+    private void checkAuthenticationState() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            mLogOutIntent.setFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity( mLogOutIntent );
+            finish();
+        }
+    }
+
+    private void logOut() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText( MainActivity.this, "Successfully logged out", Toast.LENGTH_LONG ).show();
+            startActivity( mLogOutIntent );
+            finish();
+        }
+    }
+
+    private void initUI(){
+        mProgressBar = findViewById(R.id.main_progressbar);
+        //UI Elements
+        TextView dayOfWeekTextview = findViewById(R.id.day_ofweek_tv);
+        mDay = getDay();
+        dayOfWeekTextview.setText(mDay);
+        initRecycler();
+        musclesTextview = findViewById(R.id.muscle_groups_tv);
+        //ad view
+        AdView adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+    }
+
+    private void initRecycler(){
+        mRecyclerView = findViewById(R.id.recycler_main);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+    }
+
+    private void checkPrefs(){
+        boolean age = mSharedPreferences.contains( Constants.AGE);
+        boolean height = mSharedPreferences.contains( Constants.HEIGHT);
+        boolean activity = mSharedPreferences.contains( Constants.ACTIVITY);
+        boolean sex = mSharedPreferences.contains( Constants.SEX);
+        prefBool = age && height && activity && sex;
+    }
+
+    private void basicInfoDialogPrompt() {
+        //check if the shared preferences contain the basic info of the user if not prompt the user to add details
+        if(!prefBool){
+            BasicInfoDialog dialog = new BasicInfoDialog();
+            dialog.show(getFragmentManager(), "info_dialog_prompt");
+        }
+    }
+
     public String getDay(){
         Date date = new Date();
         SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE");
         return simpleDateformat.format(date);
     }
 
+    //------------ASYNC TASKS------------//
     public class DatabaseOperation extends AsyncTask<Void, Void, Program>{
 
         @Override

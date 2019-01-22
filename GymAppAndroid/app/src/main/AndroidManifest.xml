@@ -12,25 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_application_id"/>
+            android:value="@string/admob_application_id" />
 
         <activity android:name=".UI.Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".UI.Activities.RegisterNewAccount" />
-
         <activity
             android:name=".UI.Activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UI.Activities.AddProgramActivity"
             android:parentActivityName=".UI.Activities.MainActivity" />
@@ -45,12 +44,19 @@
 
         <activity
             android:name=".UI.Activities.UserActivity"
+            android:parentActivityName=".UI.Activities.MainActivity" />
+
+        <activity
+            android:name=".UI.Activities.ProgressActivity"
+            android:parentActivityName=".UI.Activities.ProgressGridActivity"
+            ></activity>
+
+        <activity android:name=".UI.Activities.ProgressGridActivity"
             android:parentActivityName=".UI.Activities.MainActivity">
         </activity>
         <activity
             android:name=".UI.Activities.MyProgramActivity"
-            android:parentActivityName=".UI.Activities.MainActivity">
-        </activity>
+            android:parentActivityName=".UI.Activities.MainActivity"/>
     </application>
 
 </manifest>

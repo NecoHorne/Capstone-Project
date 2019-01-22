@@ -40,6 +40,7 @@ public class MyProgramActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_program);
         initUI();
         engageViewModel();
+        setTitle(getString(R.string.my_program));
     }
 
     private void initUI() {

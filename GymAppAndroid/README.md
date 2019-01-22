@@ -15,3 +15,8 @@ Measure your current body progress
 - Picasso
 - Google gson
 - Room
+- Google admob
+- AnyChart
+
+### Note
+Please note that the Firebase json file is not included in the repository. 

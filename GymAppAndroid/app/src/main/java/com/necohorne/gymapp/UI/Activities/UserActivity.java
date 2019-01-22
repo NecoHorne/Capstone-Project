@@ -50,6 +50,7 @@ public class UserActivity extends AppCompatActivity {
         initUI();
         mDatabase = MeasurementsDatabase.getInstance(getApplicationContext());
         new UpdateUserStats().execute();
+        setTitle(getString(R.string.my_stats));
     }
 
     private void initUI() {

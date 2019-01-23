@@ -54,16 +54,12 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
     //Firebase Dependencies
-    implementation 'com.google.firebase:firebase-core:16.0.6'
-    implementation 'com.google.firebase:firebase-database:16.0.5'
-    implementation 'com.google.firebase:firebase-firestore:17.1.5'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    implementation 'com.google.firebase:firebase-auth:16.1.0'
-    implementation 'com.google.firebase:firebase-invites:16.0.6'
-    implementation 'com.google.firebase:firebase-appindexing:17.1.0'
-    implementation 'com.google.firebase:firebase-crash:16.2.1'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
-    implementation 'com.google.firebase:firebase-ads:17.1.2'
+    implementation 'com.google.firebase:firebase-core:16.0.6' //core Firebase
+    implementation 'com.google.firebase:firebase-auth:16.1.0' //Firebase authentication
+    implementation 'com.google.firebase:firebase-appindexing:17.1.0' //Firebass App Indexing
+    implementation 'com.google.firebase:firebase-crash:16.2.1' //Firebase Crash reporting
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8' //Google Crashlytics
+    implementation 'com.google.firebase:firebase-ads:17.1.2' //Firebase / Google Admob
 
     //Third party Dependencies
     implementation 'de.hdodenhof:circleimageview:2.2.0' //circle image library

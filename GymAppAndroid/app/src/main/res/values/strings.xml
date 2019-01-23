@@ -198,6 +198,11 @@
     <string name="my_stats">My Stats</string>
     <string name="my_program">My Program</string>
     <string name="title_progress">&#160;Progress</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widget_no_program">No program set for today!</string>
+    <string name="invite_message">Hey check out this exercise program planning app at:</string>
+    <string name="invite_title">Send to:</string>
 
 </resources>
 

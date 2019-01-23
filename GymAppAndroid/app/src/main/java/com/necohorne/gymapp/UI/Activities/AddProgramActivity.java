@@ -69,6 +69,7 @@ public class AddProgramActivity extends AppCompatActivity {
         setUpRecycler();
         setDaySpinner();
         setMuscleSpinner();
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     //Add Program UI Elements
@@ -312,6 +313,7 @@ public class AddProgramActivity extends AppCompatActivity {
                 mProgram = new Program();
                 mAdapter.notifyDataSetChanged();
             }
+            mProgressBar.setVisibility(View.GONE);
         }
     }
 

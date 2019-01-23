@@ -11,8 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".UI.Widget.ProgramWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
 
-
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/program_widget_info" />
+        </receiver>
+        <service android:name=".UI.Widget.WidgetIntentService"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -45,18 +53,15 @@
         <activity
             android:name=".UI.Activities.UserActivity"
             android:parentActivityName=".UI.Activities.MainActivity" />
-
         <activity
             android:name=".UI.Activities.ProgressActivity"
-            android:parentActivityName=".UI.Activities.ProgressGridActivity"
-            ></activity>
-
-        <activity android:name=".UI.Activities.ProgressGridActivity"
-            android:parentActivityName=".UI.Activities.MainActivity">
-        </activity>
+            android:parentActivityName=".UI.Activities.ProgressGridActivity" />
+        <activity
+            android:name=".UI.Activities.ProgressGridActivity"
+            android:parentActivityName=".UI.Activities.MainActivity"></activity>
         <activity
             android:name=".UI.Activities.MyProgramActivity"
-            android:parentActivityName=".UI.Activities.MainActivity"/>
+            android:parentActivityName=".UI.Activities.MainActivity" />
     </application>
 
 </manifest>

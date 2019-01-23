@@ -42,11 +42,11 @@ Your project will be evaluated by a Udacity Code Reviewer according to this [rub
 - [X] App validates all input from servers and users. If data does not exist or is in the wrong format, the app logs this fact and does not crash.
 - [X] App includes support for accessibility. That includes content descriptions, navigation using a D-pad, and, if applicable, non-audio versions of audio cues.
 - [X] App keeps all strings in a `strings.xml` file and enables RTL layout switching on all layouts.
-- [] App provides a widget to provide relevant information to the user on the home screen.
+- [X] App provides a widget to provide relevant information to the user on the home screen.
 
 #### Google Play Services
 - [X] App integrates two or more Google services. Google service integrations can be a part of Google Play Services or Firebase.
-- [] Each service imported in the build.gradle is used in the app.
+- [X] Each service imported in the build.gradle is used in the app.
 - [X] If Location is used, the app customizes the user’s experience by using the device's location. **N/A**
 - [X] If Admob is used, the app displays test ads. If Admob was not used, student meets specifications.
 - [X] If Analytics is used, the app creates only one analytics instance. If Analytics was not used, student meets specifications.
@@ -60,8 +60,8 @@ Your project will be evaluated by a Udacity Code Reviewer according to this [rub
 
 #### Building
 - [X] App builds from a clean repository checkout with no additional configuration.
-- [] App builds and deploys using the installRelease Gradle task.
-- [] App is equipped with a signing configuration, and the keystore and passwords are included in the repository. Keystore is referred to by a relative path.
+- [X] App builds and deploys using the installRelease Gradle task.
+- [X] App is equipped with a signing configuration, and the keystore and passwords are included in the repository. Keystore is referred to by a relative path.
 - [X] All app dependencies are managed by Gradle.
 
 #### Data Persistence

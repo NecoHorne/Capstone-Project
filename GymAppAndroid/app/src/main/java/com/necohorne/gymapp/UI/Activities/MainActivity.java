@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity
 
     private Intent mLogOutIntent;
 
-    //TODO Build Widget
-
     //------------LIFE CYCLE------------//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +91,7 @@ public class MainActivity extends AppCompatActivity
         basicInfoDialogPrompt();
 
         mDatabase = ProgramDatabase.getInstance(getApplicationContext());
+        mProgressBar.setVisibility(View.VISIBLE);
         new DatabaseOperation().execute();
 
     }
@@ -113,21 +112,22 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+    //Options on main screen not currently used.
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        if(id == R.id.action_settings) {
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, ProgressGridActivity.class));
                 break;
             case R.id.nav_share:
-                //
+                shareInvite();
                 break;
             case R.id.nav_logout:
                 logOut();
@@ -235,6 +235,16 @@ public class MainActivity extends AppCompatActivity
         return simpleDateformat.format(date);
     }
 
+    private void shareInvite(){
+        String mainDynamicLink = "https://necohorne.page.link/u9DC";
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                getString(R.string.invite_message) + mainDynamicLink);
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, getString(R.string.invite_title)));
+    }
+
     //------------ASYNC TASKS------------//
     public class DatabaseOperation extends AsyncTask<Void, Void, Program>{
 
@@ -259,6 +269,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 musclesTextview.setText(sb.toString());
             }
+            mProgressBar.setVisibility(View.GONE);
         }
     }
 

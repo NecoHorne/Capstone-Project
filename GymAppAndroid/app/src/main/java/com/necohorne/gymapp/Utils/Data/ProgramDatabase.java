@@ -10,7 +10,7 @@ import android.util.Log;
 import com.necohorne.gymapp.Models.Program;
 
 @Database(entities = {Program.class}, version = 1, exportSchema = false)
-@TypeConverters(SetConverter.class)
+@TypeConverters(ProgramConverter.class)
 public abstract class ProgramDatabase extends RoomDatabase {
 
     private static final String TAG = ProgramDatabase.class.getSimpleName();

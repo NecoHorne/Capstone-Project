@@ -4,10 +4,8 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -21,7 +19,6 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.MarkerType;
 import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
-import com.google.firebase.database.annotations.NotNull;
 import com.necohorne.gymapp.Models.Measurement;
 import com.necohorne.gymapp.R;
 import com.necohorne.gymapp.Utils.Constants;

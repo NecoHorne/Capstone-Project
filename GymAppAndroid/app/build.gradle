@@ -31,7 +31,7 @@ android {
 
         release {
 
-            storeFile file('Keys/udacityKey.jks')
+            storeFile file('../Keys/udacityKey.jks')
             storePassword "Udacity1234"
             keyAlias "key0"
             keyPassword "Udacity1234"

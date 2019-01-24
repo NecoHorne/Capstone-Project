@@ -39,7 +39,13 @@ public class AddProgramRecyclerAdapter extends RecyclerView.Adapter<AddProgramRe
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final BlockExercise blockExercise = mBlockExercises.get(i);
         viewHolder.exerciseTitle.setText(blockExercise.getExercise().getName());
-        viewHolder.exerciseSub.setText("Sets: " + blockExercise.getNumberSets() + " Reps per set: " + blockExercise.getRepsPerSet()[0]);
+
+        String exerciseSubString = mContext.getString(R.string.recycler_sets) +
+                blockExercise.getNumberSets() +
+                mContext.getString(R.string.recycler_reps) +
+                blockExercise.getRepsPerSet()[0];
+
+        viewHolder.exerciseSub.setText(exerciseSubString);
         viewHolder.mLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

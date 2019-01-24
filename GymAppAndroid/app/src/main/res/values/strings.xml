@@ -213,6 +213,12 @@
     <string name="add_a_exercises_to_my_program">Add a Exercises to my program</string>
     <string name="login_to_app">Login to app</string>
     <string name="communicate_string">Communicate</string>
+    
+    <!--Recycler Text view concats-->
+    <string name="recycler_sets">Sets:&#160;</string>
+    <string name="recycler_reps">&#160;Reps per set:&#160;</string>
+    <string name="recycler_set">Set:&#160;</string>
+    <string name="recycler_rep">Reps:&#160;</string>
 
 </resources>
 

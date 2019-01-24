@@ -31,7 +31,7 @@ import static android.text.TextUtils.isEmpty;
 
 public class ResendVerificationDialog extends DialogFragment {
 
-    private static final String TAG = "ResendVerification";
+    private static final String TAG = ResendVerificationDialog.class.getSimpleName();
 
     //UI Widgets
     private EditText mEmail;

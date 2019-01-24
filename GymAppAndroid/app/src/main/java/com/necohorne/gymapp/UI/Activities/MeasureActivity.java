@@ -243,7 +243,7 @@ public class MeasureActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
-            Toast.makeText(getApplicationContext(), "Measurement Saved.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.measurement_saved_toast), Toast.LENGTH_LONG).show();
         }
     }
 }

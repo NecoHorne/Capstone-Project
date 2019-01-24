@@ -76,11 +76,11 @@ public class LoginActivity extends AppCompatActivity implements DialogCloseListe
                 if (user != null) {
                     //user is signed in
                     if (user.isEmailVerified()) {
-                        Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, getString(R.string.logged_in), Toast.LENGTH_LONG).show();
                         startActivity( mLoggedInIntent );
                         finish();
                     }else {
-                        Toast.makeText( LoginActivity.this, "Please Verify your email address", Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( LoginActivity.this, getString(R.string.verify_your_email), Toast.LENGTH_SHORT ).show();
                         FirebaseAuth.getInstance().signOut();
                     }
                 }else {
@@ -165,13 +165,13 @@ public class LoginActivity extends AppCompatActivity implements DialogCloseListe
             }).addOnFailureListener( new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText( LoginActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
                     mProgressBar.setVisibility(View.INVISIBLE);
                 }
             } );
 
         } else {
-            Toast.makeText( LoginActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText( LoginActivity.this, getString(R.string.fill_in_all_fields), Toast.LENGTH_SHORT).show();
         }
 
     }

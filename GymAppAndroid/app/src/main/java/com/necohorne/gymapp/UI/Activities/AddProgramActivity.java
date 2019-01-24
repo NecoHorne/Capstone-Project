@@ -334,9 +334,12 @@ public class AddProgramActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean bool) {
             if(bool){
-                Toast.makeText(getApplicationContext(), "Program for " + daySelected + " saved.", Toast.LENGTH_LONG).show();
+
+                String saved = getString(R.string.program_saved) + daySelected + getString(R.string.p_saved);
+                Toast.makeText(getApplicationContext(), saved, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Program for "+ daySelected +" Updated!", Toast.LENGTH_LONG).show();
+                String updated = getString(R.string.program_saved) + daySelected + getString(R.string.p_updated);
+                Toast.makeText(getApplicationContext(), updated, Toast.LENGTH_LONG).show();
             }
         }
     }

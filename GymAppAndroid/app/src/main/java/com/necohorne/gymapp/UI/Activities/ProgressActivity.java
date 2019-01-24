@@ -119,7 +119,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number neck = (measurement.getNeck() == 0) ? null : measurement.getNeck();
                 seriesData.add(new CustomSingleDataEntry(week, neck));
                 count--;
@@ -127,7 +127,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number neck = (measurement.getNeck() == 0) ? null : measurement.getNeck();
                 seriesData.add(new CustomSingleDataEntry(week, neck));
             }
@@ -142,7 +142,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number chest = (measurement.getChest() == 0) ? null : measurement.getChest();
                 seriesData.add(new CustomSingleDataEntry(week, chest));
                 count--;
@@ -150,7 +150,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number chest = (measurement.getChest() == 0) ? null : measurement.getChest();
                 seriesData.add(new CustomSingleDataEntry(week, chest));
             }
@@ -165,7 +165,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number shoulder = (measurement.getShoulders() == 0) ? null : measurement.getShoulders();
                 seriesData.add(new CustomSingleDataEntry(week, shoulder));
                 count--;
@@ -173,7 +173,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number shoulder = (measurement.getShoulders() == 0) ? null : measurement.getShoulders();
                 seriesData.add(new CustomSingleDataEntry(week, shoulder));
             }
@@ -188,7 +188,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number leftArm = (measurement.getLeftArm() == 0) ? null : measurement.getLeftArm();
                 seriesData.add(new CustomSingleDataEntry(week, leftArm));
                 count--;
@@ -196,7 +196,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number leftArm = (measurement.getLeftArm() == 0) ? null : measurement.getLeftArm();
                 seriesData.add(new CustomSingleDataEntry(week, leftArm));
             }
@@ -211,7 +211,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number rightArm = (measurement.getRightArm() == 0) ? null : measurement.getRightArm();
                 seriesData.add(new CustomSingleDataEntry(week, rightArm));
                 count--;
@@ -219,7 +219,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number rightArm = (measurement.getRightArm() == 0) ? null : measurement.getRightArm();
                 seriesData.add(new CustomSingleDataEntry(week, rightArm));
             }
@@ -234,7 +234,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number leftForearm = (measurement.getLeftForearm() == 0) ? null : measurement.getLeftForearm();
                 seriesData.add(new CustomSingleDataEntry(week, leftForearm));
                 count--;
@@ -242,7 +242,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number leftForearm = (measurement.getLeftForearm() == 0) ? null : measurement.getLeftForearm();
                 seriesData.add(new CustomSingleDataEntry(week, leftForearm));
             }
@@ -257,7 +257,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number rightForearm = (measurement.getRightForearm() == 0) ? null : measurement.getRightForearm();
                 seriesData.add(new CustomSingleDataEntry(week, rightForearm));
                 count--;
@@ -265,7 +265,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number rightForearm = (measurement.getRightForearm() == 0) ? null : measurement.getRightForearm();
                 seriesData.add(new CustomSingleDataEntry(week, rightForearm));
             }
@@ -280,7 +280,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number waist = (measurement.getWaist() == 0) ? null : measurement.getWaist();
                 seriesData.add(new CustomSingleDataEntry(week, waist));
                 count--;
@@ -288,7 +288,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number waist = (measurement.getWaist() == 0) ? null : measurement.getWaist();
                 seriesData.add(new CustomSingleDataEntry(week, waist));
             }
@@ -303,7 +303,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number hips = (measurement.getHips() == 0) ? null : measurement.getHips();
                 seriesData.add(new CustomSingleDataEntry(week, hips));
                 count--;
@@ -311,7 +311,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number hips = (measurement.getHips() == 0) ? null : measurement.getHips();
                 seriesData.add(new CustomSingleDataEntry(week, hips));
             }
@@ -326,7 +326,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number leftThigh = (measurement.getLeftLeg() == 0) ? null : measurement.getLeftLeg();
                 seriesData.add(new CustomSingleDataEntry(week, leftThigh));
                 count--;
@@ -334,7 +334,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number leftThigh = (measurement.getLeftLeg() == 0) ? null : measurement.getLeftLeg();
                 seriesData.add(new CustomSingleDataEntry(week, leftThigh));
             }
@@ -349,7 +349,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number rightThigh = (measurement.getRightLeg() == 0) ? null : measurement.getRightLeg();
                 seriesData.add(new CustomSingleDataEntry(week, rightThigh));
                 count--;
@@ -357,7 +357,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number rightThigh = (measurement.getRightLeg() == 0) ? null : measurement.getRightLeg();
                 seriesData.add(new CustomSingleDataEntry(week, rightThigh));
             }
@@ -372,7 +372,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number leftCalf = (measurement.getLeftCalf() == 0) ? null : measurement.getLeftCalf();
                 seriesData.add(new CustomSingleDataEntry(week, leftCalf));
                 count--;
@@ -380,7 +380,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number leftCalf = (measurement.getLeftCalf() == 0) ? null : measurement.getLeftCalf();
                 seriesData.add(new CustomSingleDataEntry(week, leftCalf));
             }
@@ -395,7 +395,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number rightCalf = (measurement.getRightCalf() == 0) ? null : measurement.getRightCalf();
                 seriesData.add(new CustomSingleDataEntry(week, rightCalf));
                 count--;
@@ -403,7 +403,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number rightCalf = (measurement.getRightCalf() == 0) ? null : measurement.getRightCalf();
                 seriesData.add(new CustomSingleDataEntry(week, rightCalf));
             }
@@ -418,7 +418,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number weight = (measurement.getWeight() == 0) ? null : measurement.getWeight();
                 seriesData.add(new CustomSingleDataEntry(week, weight));
                 count--;
@@ -426,7 +426,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number weight = (measurement.getWeight() == 0) ? null : measurement.getWeight();
                 seriesData.add(new CustomSingleDataEntry(week, weight));
             }
@@ -441,7 +441,7 @@ public class ProgressActivity extends AppCompatActivity {
             int count = 10;
             while(count > 0){
                 Measurement measurement = measurementArrayList.get(measurementArrayList.size() - count);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number bodyFat = (measurement.getBodyFat() == 0) ? null : measurement.getBodyFat();
                 seriesData.add(new CustomSingleDataEntry(week, bodyFat));
                 count--;
@@ -449,7 +449,7 @@ public class ProgressActivity extends AppCompatActivity {
         } else {
             for(int i = 0; i < measurementArrayList.size(); i++) {
                 Measurement measurement = measurementArrayList.get(i);
-                String week = "CW" + getCalendarWeek(measurement.getDate());
+                String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
                 Number bodyFat = (measurement.getBodyFat() == 0) ? null : measurement.getBodyFat();
                 seriesData.add(new CustomSingleDataEntry(week, bodyFat));
             }
@@ -528,7 +528,7 @@ public class ProgressActivity extends AppCompatActivity {
     private CustomDataEntry getDataEntry(Measurement measurement){
 
         //get the calendar week number
-        String week = "CW" + getCalendarWeek(measurement.getDate());
+        String week = getString(R.string.calander_week) + getCalendarWeek(measurement.getDate());
 
         //for each data object in the measurement if its added as 0 mark as null for purposes of the chart
         Number neck = (measurement.getNeck() == 0) ? null : measurement.getNeck();
@@ -589,7 +589,7 @@ public class ProgressActivity extends AppCompatActivity {
         Mapping series15Mapping = set.mapAs("{ x: 'x', value: 'bodyFat' }");
 
         Line series1 = cartesian.line(series1Mapping);
-        series1.name("Neck");
+        series1.name(getString(R.string.neck));
         series1.hovered().markers().enabled(true);
         series1.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -602,7 +602,7 @@ public class ProgressActivity extends AppCompatActivity {
         series1.labels(true);
 
         Line series2 = cartesian.line(series2Mapping);
-        series2.name("Chest");
+        series2.name(getString(R.string.chest));
         series2.hovered().markers().enabled(true);
         series2.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -615,7 +615,7 @@ public class ProgressActivity extends AppCompatActivity {
         series2.labels(true);
 
         Line series3 = cartesian.line(series3Mapping);
-        series3.name("Shoulder");
+        series3.name(getString(R.string.shoulder));
         series3.hovered().markers().enabled(true);
         series3.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -628,7 +628,7 @@ public class ProgressActivity extends AppCompatActivity {
         series3.labels(true);
 
         Line series4 = cartesian.line(series4Mapping);
-        series4.name("Left Arm");
+        series4.name(getString(R.string.left_arm));
         series4.hovered().markers().enabled(true);
         series4.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -641,7 +641,7 @@ public class ProgressActivity extends AppCompatActivity {
         series4.labels(true);
 
         Line series5 = cartesian.line(series5Mapping);
-        series5.name("Right Arm");
+        series5.name(getString(R.string.right_arm));
         series5.hovered().markers().enabled(true);
         series5.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -654,7 +654,7 @@ public class ProgressActivity extends AppCompatActivity {
         series5.labels(true);
 
         Line series6 = cartesian.line(series6Mapping);
-        series6.name("Left Forearm");
+        series6.name(getString(R.string.left_forearm));
         series6.hovered().markers().enabled(true);
         series6.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -667,7 +667,7 @@ public class ProgressActivity extends AppCompatActivity {
         series6.labels(true);
 
         Line series7 = cartesian.line(series7Mapping);
-        series7.name("Right Forearm");
+        series7.name(getString(R.string.right_forearm));
         series7.hovered().markers().enabled(true);
         series7.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -680,7 +680,7 @@ public class ProgressActivity extends AppCompatActivity {
         series7.labels(true);
 
         Line series8 = cartesian.line(series8Mapping);
-        series8.name("Waist");
+        series8.name(getString(R.string.waist));
         series8.hovered().markers().enabled(true);
         series8.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -693,7 +693,7 @@ public class ProgressActivity extends AppCompatActivity {
         series8.labels(true);
 
         Line series9 = cartesian.line(series9Mapping);
-        series9.name("Hips");
+        series9.name(getString(R.string.hips));
         series9.hovered().markers().enabled(true);
         series9.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -706,7 +706,7 @@ public class ProgressActivity extends AppCompatActivity {
         series9.labels(true);
 
         Line series10 = cartesian.line(series10Mapping);
-        series10.name("Left Thigh");
+        series10.name(getString(R.string.left_thigh));
         series10.hovered().markers().enabled(true);
         series10.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -719,7 +719,7 @@ public class ProgressActivity extends AppCompatActivity {
         series10.labels(true);
 
         Line series11 = cartesian.line(series11Mapping);
-        series11.name("Right Thigh");
+        series11.name(getString(R.string.right_thigh));
         series11.hovered().markers().enabled(true);
         series11.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -732,7 +732,7 @@ public class ProgressActivity extends AppCompatActivity {
         series11.labels(true);
 
         Line series12 = cartesian.line(series12Mapping);
-        series12.name("Left Calf");
+        series12.name(getString(R.string.left_calf));
         series12.hovered().markers().enabled(true);
         series12.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -745,7 +745,7 @@ public class ProgressActivity extends AppCompatActivity {
         series12.labels(true);
 
         Line series13 = cartesian.line(series13Mapping);
-        series13.name("Right Calf");
+        series13.name(getString(R.string.right_calf));
         series13.hovered().markers().enabled(true);
         series13.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -758,7 +758,7 @@ public class ProgressActivity extends AppCompatActivity {
         series13.labels(true);
 
         Line series14 = cartesian.line(series14Mapping);
-        series14.name("Weight");
+        series14.name(getString(R.string.weight));
         series14.hovered().markers().enabled(true);
         series14.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -771,7 +771,7 @@ public class ProgressActivity extends AppCompatActivity {
         series14.labels(true);
 
         Line series15 = cartesian.line(series15Mapping);
-        series15.name("Body Fat");
+        series15.name(getString(R.string.body_fat_string));
         series15.hovered().markers().enabled(true);
         series15.hovered().markers()
                 .type(MarkerType.CIRCLE)

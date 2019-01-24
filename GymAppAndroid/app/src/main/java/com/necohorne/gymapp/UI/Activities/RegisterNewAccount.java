@@ -21,7 +21,7 @@ import static android.text.TextUtils.isEmpty;
 
 public class RegisterNewAccount extends AppCompatActivity {
 
-    private static final String TAG = "RegisterNewAccount";
+    private static final String TAG = RegisterNewAccount.class.getSimpleName();
 
     private EditText mEmail;
     private EditText mPassword;

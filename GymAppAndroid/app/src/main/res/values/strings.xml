@@ -167,6 +167,23 @@
         <item>All</item>
     </array>
 
+    <string name="neck">Neck</string>
+    <string name="chest">Chest</string>
+    <string name="shoulder">Shoulder</string>
+    <string name="left_arm">Left Arm</string>
+    <string name="right_arm">Right Arm</string>
+    <string name="left_forearm">Left Forearm</string>
+    <string name="right_forearm">Right Forearm</string>
+    <string name="waist">Waist</string>
+    <string name="hips">Hips</string>
+    <string name="left_thigh">Left Thigh</string>
+    <string name="right_thigh">Right Thigh</string>
+    <string name="left_calf">Left Calf</string>
+    <string name="right_calf">Right Calf</string>
+    <string name="weight">Weight</string>
+    <string name="body_fat_string">Body Fat</string>
+    <string name="all">All</string>
+
     <!--Chart-->
     <string name="chart_title">My Weekly Progress</string>
     <string name="change">Change</string>
@@ -219,6 +236,15 @@
     <string name="recycler_reps">&#160;Reps per set:&#160;</string>
     <string name="recycler_set">Set:&#160;</string>
     <string name="recycler_rep">Reps:&#160;</string>
+    <string name="program_saved">Program for&#160;</string>
+    <string name="p_saved">&#160;saved.</string>
+    <string name="p_updated">&#160;Updated!</string>
+    <string name="logged_in">Logged In</string>
+    <string name="verify_your_email">Please Verify your email address</string>
+    <string name="auth_failed">Authentication Failed</string>
+    <string name="fill_in_all_fields">Please fill in all fields</string>
+    <string name="measurement_saved_toast">Measurement Saved.</string>
+    <string name="calander_week">CW</string>
 
 </resources>
 

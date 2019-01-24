@@ -20,7 +20,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/program_widget_info" />
         </receiver>
-        <service android:name=".UI.Widget.WidgetIntentService"/>
+        <service android:name=".UI.Widget.WidgetIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -58,7 +59,7 @@
             android:parentActivityName=".UI.Activities.ProgressGridActivity" />
         <activity
             android:name=".UI.Activities.ProgressGridActivity"
-            android:parentActivityName=".UI.Activities.MainActivity"></activity>
+            android:parentActivityName=".UI.Activities.MainActivity" />
         <activity
             android:name=".UI.Activities.MyProgramActivity"
             android:parentActivityName=".UI.Activities.MainActivity" />

@@ -36,7 +36,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_linechart" />
+                app:srcCompat="@drawable/ic_linechart"
+                android:contentDescription="@string/image_of_a_chart" />
 
             <TextView
                 android:id="@+id/progress_title_tv"
@@ -46,7 +47,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="TextView"
+                android:text="@string/textview"
                 android:textAlignment="center"
                 android:textSize="16sp"
                 android:textStyle="bold"

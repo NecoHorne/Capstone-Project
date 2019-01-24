@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +26,6 @@ public class RegisterNewAccount extends AppCompatActivity {
     private EditText mEmail;
     private EditText mPassword;
     private EditText mConfirmPassword;
-    private Button createNewAccountButton;
     private FirebaseAuth mAuth;
     private ProgressBar mProgressBar;
 
@@ -40,8 +38,8 @@ public class RegisterNewAccount extends AppCompatActivity {
 
         setUpUi();
 
-        createNewAccountButton = (Button) findViewById( R.id.register_account_create_button);
-        createNewAccountButton.setOnClickListener( new View.OnClickListener() {
+        Button createNewAccountButton = findViewById(R.id.register_account_create_button);
+        createNewAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createAccount();
@@ -51,7 +49,7 @@ public class RegisterNewAccount extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText( RegisterNewAccount.this, "Account Creation Canceled", Toast.LENGTH_LONG ).show();
+        Toast.makeText( RegisterNewAccount.this, getString(R.string.acc_create_canceled), Toast.LENGTH_LONG ).show();
         super.onBackPressed();
     }
 
@@ -62,9 +60,9 @@ public class RegisterNewAccount extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(RegisterNewAccount.this, "Verification Email sent" , Toast.LENGTH_SHORT ).show();
+                        Toast.makeText(RegisterNewAccount.this, getString(R.string.verification_sent) , Toast.LENGTH_SHORT ).show();
                     }else {
-                        Toast.makeText(RegisterNewAccount.this, "Verification Email could not be sent" , Toast.LENGTH_SHORT ).show();
+                        Toast.makeText(RegisterNewAccount.this, getString(R.string.verification_not_sent) , Toast.LENGTH_SHORT ).show();
                     }
                 }
             } );
@@ -72,14 +70,14 @@ public class RegisterNewAccount extends AppCompatActivity {
     }
 
     private void setUpUi() {
-        mEmail = (EditText) findViewById( R.id.register_account_email);
-        mPassword = (EditText) findViewById( R.id.register_account_password);
-        mConfirmPassword = (EditText) findViewById( R.id.register_account_password_confirm);
-        mProgressBar = (ProgressBar) findViewById( R.id.create_account_progressbar);
+        mEmail = findViewById( R.id.register_account_email);
+        mPassword = findViewById( R.id.register_account_password);
+        mConfirmPassword = findViewById( R.id.register_account_password_confirm);
+        mProgressBar = findViewById( R.id.create_account_progressbar);
     }
 
     private void createAccount() {
-        Log.d(TAG, "createAccount has been called");
+//        Log.d(TAG, "createAccount has been called");
 
         //check for empty fields to ensure all fields are filled in.
         if (!isEmpty(mEmail.getText().toString())
@@ -92,9 +90,9 @@ public class RegisterNewAccount extends AppCompatActivity {
                         new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Log.d(TAG, "registerEmail onComplete; " + task.isSuccessful());
+//                                Log.d(TAG, "registerEmail onComplete; " + task.isSuccessful());
                                 if (task.isSuccessful()){
-                                    Log.d(TAG, "registerEmail onComplete; " + FirebaseAuth.getInstance().getCurrentUser().getUid());
+//                                    Log.d(TAG, "registerEmail onComplete; " + FirebaseAuth.getInstance().getCurrentUser().getUid());
                                     sendVerificationEmail();
                                     FirebaseAuth.getInstance().signOut();
                                     mProgressBar.setVisibility( View.INVISIBLE );
@@ -102,15 +100,15 @@ public class RegisterNewAccount extends AppCompatActivity {
                                     finish();
                                 }else {
                                     mProgressBar.setVisibility( View.INVISIBLE );
-                                    Toast.makeText( RegisterNewAccount.this, "Account Creation Unsuccessful", Toast.LENGTH_LONG).show();
+                                    Toast.makeText( RegisterNewAccount.this, getString(R.string.acc_creation_unsuccessfull), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
             }else {
-                Toast.makeText( RegisterNewAccount.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                Toast.makeText( RegisterNewAccount.this, getString(R.string.passwords_dont_match), Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText( RegisterNewAccount.this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText( RegisterNewAccount.this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
         }
     }
 }

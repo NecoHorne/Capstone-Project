@@ -7,35 +7,35 @@
         <item
             android:id="@+id/nav_stats"
             android:icon="@drawable/ic_scale"
-            android:title="My Stats" />
+            android:title="@string/my_stats" />
         <item
             android:id="@+id/nav_measure"
             android:icon="@drawable/ic_body"
-            android:title="Add Measurement" />
+            android:title="@string/add_measurement" />
         <item
             android:id="@+id/nav_program"
             android:icon="@drawable/ic_dumbbell"
-            android:title="My Program" />
+            android:title="@string/my_program" />
         <item
             android:id="@+id/nav_progress"
             android:icon="@drawable/ic_linechart"
-            android:title="My Progress" />
+            android:title="@string/my_progress" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate_string">
         <menu>
             <item
                 android:id="@+id/nav_update"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Update Info" />
+                android:title="@string/update_info" />
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/share" />
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_exit_to_app_black_24dp"
-                android:title="Logout" />
+                android:title="@string/logout" />
         </menu>
     </item>
 

@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -113,22 +112,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    //Options on main screen not currently used.
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if(id == R.id.action_settings) {
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -137,6 +120,7 @@ public class MainActivity extends AppCompatActivity
         BasicInfoDialog dialog = new BasicInfoDialog();
         switch(id){
             case R.id.nav_measure:
+                checkPrefs();
                 if(prefBool){
                     startActivity(new Intent(MainActivity.this, MeasureActivity.class));
                 } else {
@@ -186,7 +170,7 @@ public class MainActivity extends AppCompatActivity
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText( MainActivity.this, "Successfully logged out", Toast.LENGTH_LONG ).show();
+            Toast.makeText( MainActivity.this, getString(R.string.logout_message), Toast.LENGTH_LONG ).show();
             startActivity( mLogOutIntent );
             finish();
         }
@@ -256,7 +240,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(Program program) {
             if(program != null){
-                mAdapter = new MainRecyclerAdapter(getApplicationContext(), program);
+                mAdapter = new MainRecyclerAdapter(MainActivity.this, program);
                 mRecyclerView.setAdapter(mAdapter);
 
                 StringBuilder sb = new StringBuilder();
@@ -277,15 +261,15 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         protected Integer doInBackground(Void... voids) {
-            return MeasurementsDatabase.getInstance(getApplicationContext()).MeasurementDao().dbCount();
+            return MeasurementsDatabase.getInstance(MainActivity.this).MeasurementDao().dbCount();
         }
 
         @Override
         protected void onPostExecute(Integer integer) {
             if(integer > 0){
-                startActivity(new Intent(getApplicationContext(), UserActivity.class));
+                startActivity(new Intent(MainActivity.this, UserActivity.class));
             } else {
-                Toast.makeText(getApplicationContext(), "You have not added any measurements yet, Please add a measurement and try again", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, getString(R.string.measurement_error_message), Toast.LENGTH_LONG).show();
             }
         }
     }

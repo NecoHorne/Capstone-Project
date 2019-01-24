@@ -34,7 +34,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_upper_legs" />
+                app:srcCompat="@drawable/ic_upper_legs"
+                android:contentDescription="@string/image_of_human_hips" />
 
             <LinearLayout
                 android:id="@+id/linearLayout4"

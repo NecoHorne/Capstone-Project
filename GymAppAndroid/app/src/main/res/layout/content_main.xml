@@ -39,7 +39,8 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="5dp"
                 android:padding="8dp"
-                app:srcCompat="@drawable/ic_calendar_color" />
+                app:srcCompat="@drawable/ic_calendar_color"
+                android:contentDescription="@string/image_of_a_calender" />
 
             <TextView
                 android:id="@+id/day_ofweek_tv"

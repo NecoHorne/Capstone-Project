@@ -43,7 +43,7 @@ public class ExerciseDataHandler extends SQLiteOpenHelper {
             {
                 //Copy the database from assets
                 copyDataBase();
-                Log.d(TAG, "createDatabase database created");
+//                Log.d(TAG, "createDatabase database created");
             }
             catch (IOException mIOException)
             {

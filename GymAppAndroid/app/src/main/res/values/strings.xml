@@ -23,25 +23,6 @@
     <string name="protein">&#160;g \nProtein</string>
     <string name="carbs">&#160;g \nCarbs</string>
 
-    <array name="exerciseType_keys">
-        <item>Strength</item>
-        <item>Stretching</item>
-        <item>Plyometrics</item>
-        <item>Strongman</item>
-        <item>Cardio</item>
-        <item>Powerlifting</item>
-        <item>Olympic Weightlifting</item>
-    </array>
-    <array name="exerciseType_values">
-        <item>@drawable/strength</item>
-        <item>@drawable/stretching</item>
-        <item>@drawable/plyometrics</item>
-        <item>@drawable/strongman</item>
-        <item>@drawable/cardio</item>
-        <item>@drawable/powerlifting</item>
-        <item>@drawable/olympic_lifting</item>
-    </array>
-
     <array name="muscles">
         <item>Abductors</item>
         <item>Abdominals</item>
@@ -203,6 +184,35 @@
     <string name="widget_no_program">No program set for today!</string>
     <string name="invite_message">Hey check out this exercise program planning app at:</string>
     <string name="invite_title">Send to:</string>
+    <string name="acc_create_canceled">Account Creation Canceled</string>
+    <string name="verification_sent">Verification Email sent</string>
+    <string name="verification_not_sent">Verification Email could not be sent</string>
+    <string name="acc_creation_unsuccessfull">Account Creation Unsuccessful</string>
+    <string name="passwords_dont_match">Passwords do not match</string>
+    <string name="fill_all_fields">Please fill out all fields</string>
+    <string name="all_fields_to_be_filled">all fields must be filled out</string>
+    <string name="invalid_credentials">Invalid Credentials  Reset your Password and try again</string>
+    <string name="sent_verification">Sent Verification Email</string>
+    <string name="couldnt_send_email">couldn\'t send email</string>
+    <string name="age_height_error">Age and Height cannot be 0</string>
+    <string name="age_height_error_blank">Age and Height cannot be left blank</string>
+    <string name="basic_info_saved">Basic info saved!</string>
+    <string name="password_reset_link">Password Reset Link Sent to Email</string>
+    <string name="no_user_email">No User is Associated with that Email</string>
+    <string name="measurement_error_message">You have not added any measurements yet, Please add a measurement and try again</string>
+    <string name="logout_message">Successfully logged out</string>
+    <string name="update_info">Update Info</string>
+    <string name="share">Share</string>
+    <string name="logout">Logout</string>
+    <string name="spinner">Spinner</string>
+    <string name="image_of_a_chart_to_represent_stats">Image of a chart to represent stats.</string>
+    <string name="image_of_a_calender">Image of a calender</string>
+    <string name="image_of_a_flexed_arm">Image of a flexed arm</string>
+    <string name="image_of_human_hips">Image of human hips</string>
+    <string name="image_of_a_chart">Image of a chart</string>
+    <string name="add_a_exercises_to_my_program">Add a Exercises to my program</string>
+    <string name="login_to_app">Login to app</string>
+    <string name="communicate_string">Communicate</string>
 
 </resources>
 

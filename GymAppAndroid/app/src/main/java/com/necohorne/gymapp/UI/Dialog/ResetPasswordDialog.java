@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +23,9 @@ import static android.text.TextUtils.isEmpty;
 
 public class ResetPasswordDialog extends DialogFragment {
 
-    private static final String TAG = "ResetPasswordDialog";
+    private static final String TAG = ResetPasswordDialog.class.getSimpleName();
 
     private EditText email;
-    private Button confirm;
     private Context mContext;
 
     @Nullable
@@ -37,14 +35,14 @@ public class ResetPasswordDialog extends DialogFragment {
 
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable( Color.TRANSPARENT));
 
-        email = (EditText) view.findViewById( R.id.resend_password_email );
+        email = view.findViewById( R.id.resend_password_email );
         mContext = getActivity();
-        confirm = (Button) view.findViewById( R.id.resend_password_confirmbutton );
-        confirm.setOnClickListener( new View.OnClickListener() {
+        Button confirm = view.findViewById(R.id.resend_password_confirmbutton);
+        confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isEmpty(email.getText().toString())){
-                    Log.d( TAG, "OnClickListener: attempting to send reset Email" );
+//                    Log.d( TAG, "OnClickListener: attempting to send reset Email" );
                     resendPassword(email.getText().toString());
                     getDialog().dismiss();
                 }
@@ -58,11 +56,11 @@ public class ResetPasswordDialog extends DialogFragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Log.d( TAG, "resendPassword: reset Email sent successfully" );
-                    Toast.makeText( mContext, "Password Reset Link Sent to Email", Toast.LENGTH_SHORT ).show();
+//                    Log.d( TAG, "resendPassword: reset Email sent successfully" );
+                    Toast.makeText( mContext, getString(R.string.password_reset_link), Toast.LENGTH_SHORT ).show();
                 }else{
-                    Log.d( TAG, "No User is Associated with that Email");
-                    Toast.makeText( mContext, "No User is Associated with that Email", Toast.LENGTH_SHORT ).show();
+//                    Log.d( TAG, "No User is Associated with that Email");
+                    Toast.makeText( mContext, getString(R.string.no_user_email), Toast.LENGTH_SHORT ).show();
                 }
             }
         } );

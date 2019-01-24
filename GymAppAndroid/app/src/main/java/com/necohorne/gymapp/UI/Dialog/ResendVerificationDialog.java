@@ -9,7 +9,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +36,6 @@ public class ResendVerificationDialog extends DialogFragment {
     //UI Widgets
     private EditText mEmail;
     private EditText mPassword;
-    private TextView mCancel;
-    private TextView mSend;
 
     private Context mContext;
     private View mView;
@@ -57,18 +54,18 @@ public class ResendVerificationDialog extends DialogFragment {
     }
 
     private void setupUI(){
-        mEmail = (EditText) mView.findViewById( R.id.resend_verification_email );
-        mPassword = (EditText) mView.findViewById( R.id.resend_verification_password);
-        mCancel = (TextView) mView.findViewById(R.id.dialog_cancel);
-        mCancel.setOnClickListener( new View.OnClickListener() {
+        mEmail = mView.findViewById( R.id.resend_verification_email );
+        mPassword = mView.findViewById( R.id.resend_verification_password);
+        TextView cancel = mView.findViewById(R.id.dialog_cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getDialog().cancel();
             }
         } );
 
-        mSend = (TextView) mView.findViewById( R.id.dialog_send );
-        mSend.setOnClickListener( new View.OnClickListener() {
+        TextView send = mView.findViewById(R.id.dialog_send);
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 resendVerificationEmail();
@@ -77,13 +74,13 @@ public class ResendVerificationDialog extends DialogFragment {
     }
 
     private void resendVerificationEmail() {
-        Log.d(TAG, "resend attempt");
+//        Log.d(TAG, "resend attempt");
 
         if (!isEmpty(mEmail.getText().toString())
                 && !isEmpty( mPassword.getText().toString())){
             authenticateAndResend( mEmail.getText().toString(), mPassword.getText().toString());
         }else {
-            Toast.makeText(mContext, "all fields must be filled out", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, getString(R.string.all_fields_to_be_filled), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -96,7 +93,7 @@ public class ResendVerificationDialog extends DialogFragment {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Log.d(TAG, "onComplete: re-authenticate success.");
+//                    Log.d(TAG, "onComplete: re-authenticate success.");
                     sendVerificationEmail();
                     FirebaseAuth.getInstance().signOut();
                     getDialog().dismiss();
@@ -105,7 +102,7 @@ public class ResendVerificationDialog extends DialogFragment {
         } ).addOnFailureListener( new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(mContext, "Invalid Credentials \nReset your Password and try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, getString(R.string.invalid_credentials), Toast.LENGTH_SHORT).show();
                 getDialog().dismiss();
             }
         } );
@@ -121,10 +118,10 @@ public class ResendVerificationDialog extends DialogFragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(mContext, "Sent Verification Email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, getString(R.string.sent_verification), Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Toast.makeText(mContext, "couldn't send email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, getString(R.string.couldnt_send_email), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BlackLight"
@@ -49,7 +48,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
-                app:srcCompat="@drawable/ic_monitor" />
+                app:srcCompat="@drawable/ic_monitor"
+                android:contentDescription="@string/image_of_a_chart_to_represent_stats" />
 
             <TextView
                 android:id="@+id/user_weight_tv"
@@ -133,7 +133,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/include7" />
 
             <include
-                android:id="@+id/include6"
                 layout="@layout/gain_info_fragment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

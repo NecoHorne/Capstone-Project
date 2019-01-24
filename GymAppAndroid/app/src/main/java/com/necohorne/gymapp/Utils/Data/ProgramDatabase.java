@@ -5,7 +5,6 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
-import android.util.Log;
 
 import com.necohorne.gymapp.Models.Program;
 
@@ -21,13 +20,13 @@ public abstract class ProgramDatabase extends RoomDatabase {
     public static ProgramDatabase getInstance(Context context){
         if(sInstance == null){
             synchronized(LOCK) {
-                Log.d(TAG, "Creating new Database instance");
+//                Log.d(TAG, "Creating new Database instance");
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
                         ProgramDatabase.class, ProgramDatabase.DATABASE_NAME)
                         .build();
             }
         }
-        Log.d(TAG, "Getting database instance");
+//        Log.d(TAG, "Getting database instance");
         return sInstance;
     }
 

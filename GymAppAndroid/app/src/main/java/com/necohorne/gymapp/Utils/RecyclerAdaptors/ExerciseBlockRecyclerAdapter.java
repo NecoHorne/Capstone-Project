@@ -17,7 +17,7 @@ public class ExerciseBlockRecyclerAdapter extends RecyclerView.Adapter<ExerciseB
     private Context mContext;
     private BlockExercise mBlockExercise;
 
-    public ExerciseBlockRecyclerAdapter(Context context, BlockExercise blockExercises) {
+    ExerciseBlockRecyclerAdapter(Context context, BlockExercise blockExercises) {
         mContext = context;
         mBlockExercise = blockExercises;
     }

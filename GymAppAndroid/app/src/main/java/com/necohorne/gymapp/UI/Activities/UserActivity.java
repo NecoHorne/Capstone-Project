@@ -2,9 +2,8 @@ package com.necohorne.gymapp.UI.Activities;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Switch;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.necohorne.gymapp.Models.Measurement;
@@ -12,8 +11,6 @@ import com.necohorne.gymapp.R;
 import com.necohorne.gymapp.Utils.Calculators;
 import com.necohorne.gymapp.Utils.Constants;
 import com.necohorne.gymapp.Utils.Data.MeasurementsDatabase;
-
-import static java.lang.Math.round;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -48,7 +45,7 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         initUI();
-        mDatabase = MeasurementsDatabase.getInstance(getApplicationContext());
+        mDatabase = MeasurementsDatabase.getInstance(UserActivity.this);
         new UpdateUserStats().execute();
         setTitle(getString(R.string.my_stats));
     }

@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.necohorne.gymapp.R;
-import com.necohorne.gymapp.Utils.Calculators;
 import com.necohorne.gymapp.Utils.Constants;
 
 public class BasicInfoDialog extends DialogFragment {
@@ -192,11 +190,11 @@ public class BasicInfoDialog extends DialogFragment {
             if(age > 0 && height > 0){
                 save(age, height);
             } else {
-                Toast.makeText(mContext, "Age and Height cannot be 0", Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, getString(R.string.age_height_error), Toast.LENGTH_LONG).show();
             }
 
         } else {
-            Toast.makeText(mContext, "Age and Height cannot be left blank", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, getString(R.string.age_height_error_blank), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -208,6 +206,6 @@ public class BasicInfoDialog extends DialogFragment {
         editor.putString(Constants.ACTIVITY, mActivityLevel);
         editor.commit();
         getDialog().dismiss();
-        Toast.makeText(mContext, "Basic info saved!", Toast.LENGTH_LONG).show();
+        Toast.makeText(mContext, getString(R.string.basic_info_saved), Toast.LENGTH_LONG).show();
     }
 }

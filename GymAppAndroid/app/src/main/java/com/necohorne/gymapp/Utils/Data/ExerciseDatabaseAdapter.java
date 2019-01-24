@@ -45,7 +45,7 @@ public class ExerciseDatabaseAdapter {
         }
         catch (IOException mIOException)
         {
-            Log.d(TAG, mIOException.toString() + "  UnableToCreateDatabase");
+            Log.e(TAG, mIOException.toString() + "  UnableToCreateDatabase");
             throw new Error("UnableToCreateDatabase");
         }
         return this;
@@ -61,7 +61,7 @@ public class ExerciseDatabaseAdapter {
         }
         catch (SQLException mSQLException)
         {
-            Log.d(TAG, "open >>"+ mSQLException.toString());
+            Log.e(TAG, "open >>"+ mSQLException.toString());
             throw mSQLException;
         }
         return this;
@@ -125,7 +125,6 @@ public class ExerciseDatabaseAdapter {
                 //Instructions string data in DB are saved as a JSON Object, JSON needs to be parsed to get each individual instruction.
                 String instructions = cursor.getString(cursor.getColumnIndex(EXERCISE_INSTRUCTIONS));
                 exercise.setInstructions(getInstructions(instructions));
-
                 exercise.setName(cursor.getString(cursor.getColumnIndex(EXERCISE_NAME)));
                 exercise.setExerciseType(cursor.getString(cursor.getColumnIndex(EXERCISE_TYPE)));
                 exercise.setMuscleTargeted(cursor.getString(cursor.getColumnIndex(EXERCISE_MUSCLE)));
